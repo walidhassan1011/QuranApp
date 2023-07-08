@@ -30,7 +30,7 @@ const SurahPart = () => {
           : translationlang.ar.name}
       </span>
       <DropDown
-        onChange={(e) => {
+        onchange={(e) => {
           setSurahName(e.target.value);
         }}
         style={

@@ -5,7 +5,6 @@ import { versesInArabic } from "@/constants/ayatNumbers";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 export const StoreContext = createContext();
-localStorage.setItem("lang", "en");
 
 export const StoreProvider = ({ children }) => {
   const [surahName, setSurahName] = useState("الفاتحة");

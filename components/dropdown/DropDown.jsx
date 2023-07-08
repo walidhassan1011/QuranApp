@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import React from "react";
 
-const DropDown = ({ children, onChange, style }) => {
+const DropDown = ({ children, onchange, style }) => {
   return (
-    <select className={...style} onChange={onChange}>
+    <select className={style} onChange={onchange}>
       {children}
     </select>
   );

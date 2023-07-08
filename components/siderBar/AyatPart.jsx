@@ -45,7 +45,7 @@ const AyatPart = () => {
         items-center"
         >
           <DropDown
-            onChange={(e) => {
+            onchange={(e) => {
               setAyaNumber({ ...ayaNumber, start: e.target.value });
               console.log(e.target.value);
             }}
@@ -54,15 +54,11 @@ const AyatPart = () => {
             }
           >
             {Array?.from(Array(surah?.toAya)?.keys()).map((item, index) => {
-              return (
-                <DropDownItem key={index} o>
-                  {item + 1}
-                </DropDownItem>
-              );
+              return <DropDownItem key={index}>{item + 1}</DropDownItem>;
             })}
           </DropDown>
           <DropDown
-            onChange={(e) => {
+            onchange={(e) => {
               setAyaNumber({ ...ayaNumber, end: e.target.value });
             }}
             style={
