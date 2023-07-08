@@ -2,26 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+@font-face {
+  font-family: "UthmanicHafs";
+  src: url("../fonts/quran/uthmanic_hafs/UthmanicHafs1Ver18.ttf");
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  font-weight: normal;
+  font-style: normal;
 }
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@font-face {
+  font-family: "surahName";
+  src: url("../fonts/quran/sura_name/ArabQuranIslamic140-K7n4W.ttf");
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "basmallah";
+  src: url("../fonts/quran/Damascus.ttf");
+  font-weight: normal;
+  font-style: normal;
 }
