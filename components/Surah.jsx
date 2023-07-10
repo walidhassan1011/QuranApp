@@ -12,7 +12,15 @@ const defaultAya = `
 const Surah = () => {
   const { surahName, surahBorder, ayat, textSize, colors } = useStore();
 
-  console.log(colors["assets"]);
+  // convert english numbers to arabic numbers
+  const convertNumbers = (str) => {
+    const arabicNumbers =
+      "\u0660\u0661\u0662\u0663\u0664\u0665\u0666\u0667\u0668\u0669";
+    return new String(str).replace(/[0123456789]/g, (num) => {
+      return arabicNumbers[num];
+    });
+  };
+
   return (
     <motion.div
       className="flex flex-col justify-center items-center
@@ -61,16 +69,14 @@ const Surah = () => {
                 <div
                   className="flex justify-center items-center w-[100%]  relative
                   mb-2
+                  flex-wrap
+                  flex-row  
                 "
                 >
                   <Image
                     src={surahBorder ? surahBorder : images.ayaBorder}
                     alt="border"
-                    className="w-[500px]
-          
-                
-
-          "
+                    className="w-[500px] "
                     style={{
                       backgroundSize: "cover",
                       backgroundPosition: "center",
@@ -82,6 +88,8 @@ const Surah = () => {
                       border: "none",
                       textAlign: "justify",
                     }}
+                    width={500}
+                    height={500}
                   />
                   <h2
                     style={{
@@ -109,18 +117,28 @@ const Surah = () => {
                 >
                   ﷽
                 </h3>
+
                 <p
                   style={{
                     fontFamily: "UthmanicHafs",
                     fontSize: `${textSize}px`,
-
                     textAlign: "justify",
                     color: colors["color"],
-                    flex: 1,
                   }}
                   dir="rtl"
                 >
-                  {ayat ? ayat : defaultAya}
+                  {ayat?.map((aya, index) => (
+                    <>
+                      <span>{aya}</span>
+                      <span
+                        style={{
+                          color: colors["assets"],
+                        }}
+                      >
+                        {convertNumbers(index + 1)}
+                      </span>
+                    </>
+                  ))}
                 </p>
               </div>
             </TransformComponent>

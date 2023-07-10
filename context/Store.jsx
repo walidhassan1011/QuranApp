@@ -19,7 +19,7 @@ export const StoreProvider = ({ children }) => {
   const [generated, setGenerated] = useState(false);
   const [surahImage, setSurahImage] = useState("");
   const [surahBorder, setSurahBorder] = useState("");
-  const [ayat, setAyat] = useState("");
+  const [ayat, setAyat] = useState([]);
   const [colors, setColors] = useState({
     background: "#c7c7c7",
     color: "#fcb7b7",
@@ -44,9 +44,16 @@ export const StoreProvider = ({ children }) => {
             end: ayaNumber.end,
           },
         });
+        const res2 = await API.get("/getTextArray", {
+          params: {
+            surah: id,
+            start: ayaNumber.start,
+            end: ayaNumber.end,
+          },
+        });
+        console.log(res2.data);
         const data = res.data;
-        setAyat(data);
-        console.log(data);
+        setAyat(res2.data);
       } catch (error) {
         console.log(error);
       }
