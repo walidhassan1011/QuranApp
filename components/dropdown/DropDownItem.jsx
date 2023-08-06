@@ -1,6 +1,6 @@
 import React from "react";
 
-const DropDownItem = ({ list, children, onclick }) => {
+const DropDownItem = ({ list, children, onclick, values }) => {
   return (
     <>
       <option value={children}>{children}</option>;

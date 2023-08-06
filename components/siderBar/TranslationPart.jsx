@@ -9,7 +9,7 @@ import { useStore } from "@/context/Store";
 import translationlang from "@/constants/translation";
 
 const TranslationPart = () => {
-  const { translation } = useStore();
+  const { translation, setUseTranslation } = useStore();
   return (
     <>
       <div
@@ -26,20 +26,22 @@ const TranslationPart = () => {
             : translationlang.ar.translation}
         </span>
         <div
-          className="flex justify-between
+          className={`flex justify-between
         items-center
         w-[100%]
        
-        ml-2
-        
-        "
+        ${translation === "English" ? "ml-2" : "mr-2"}
+        `}
         >
           <div>
             <input
               type="checkbox"
               name=""
               id=""
-              className="mr-2
+              onChange={(e) => setUseTranslation(e.target.checked)}
+              className={`
+
+            ${translation === "English" ? "ml-1" : "mr-6"}
             cursor-pointer
               checked:bg-[#000000]
               rounded-[5px]
@@ -47,7 +49,7 @@ const TranslationPart = () => {
               h-[20px]
               bg-[#F5F5F5]
               border-none
-            "
+            `}
             />
           </div>
 
@@ -62,7 +64,6 @@ const TranslationPart = () => {
               }
             >
               {lang.map((item, index) => {
-                console.log(item);
                 return <DropDownItem key={index}>{item}</DropDownItem>;
               })}
             </DropDown>

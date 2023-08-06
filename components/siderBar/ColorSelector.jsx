@@ -41,6 +41,7 @@ const ColorSelector = ({ title }) => {
   const [showColorPicker, setShowColorPicker] = useState(false);
 
   const [isFocused, setIsFocused] = useState(false);
+
   return (
     <>
       <div
@@ -57,7 +58,8 @@ const ColorSelector = ({ title }) => {
             backgroundColor: colors[title] ? colors[title] : "#000000",
             border: isFocused ? "2px solid #4687ff" : "none",
           }}
-          onClick={() => {
+          onClick={(e) => {
+            console.log(e);
             setShowColorPicker(!showColorPicker);
             setIsFocused(!isFocused);
           }}

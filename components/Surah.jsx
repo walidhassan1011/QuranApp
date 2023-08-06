@@ -1,31 +1,92 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useStore } from "../context/Store";
 import images from "@/constants/images";
+import parse from "html-react-parser";
 
-import Image from "next/image";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
+import { versesInArabic } from "@/constants/ayatNumbers";
 const defaultAya = `
 بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِالٓمٓ ١  ذَٰلِكَ ٱلۡكِتَٰبُ لَا رَيۡبَۛ فِيهِۛ هُدٗى لِّلۡمُتَّقِينَ ٢  ٱلَّذِينَ يُؤۡمِنُونَ بِٱلۡغَيۡبِ وَيُقِيمُونَ ٱلصَّلَوٰةَ وَمِمَّا رَزَقۡنَٰهُمۡ يُنفِقُونَ ٣  وَٱلَّذِينَ يُؤۡمِنُونَ بِمَآ أُنزِلَ إِلَيۡكَ وَمَآ أُنزِلَ مِن قَبۡلِكَ وَبِٱلۡأٓخِرَةِ هُمۡ يُوقِنُونَ ٤  أُوْلَٰٓئِكَ عَلَىٰ هُدٗى مِّن رَّبِّهِمۡۖ وَأُوْلَٰٓئِكَ هُمُ ٱلۡمُفۡلِحُونَ ٥ إِنَّ ٱلَّذِينَ كَفَرُواْ سَوَآءٌ عَلَيۡهِمۡ ءَأَنذَرۡتَهُمۡ أَمۡ لَمۡ تُنذِرۡهُمۡ لَا يُؤۡمِنُونَ ٦  خَتَمَ ٱللَّهُ عَلَىٰ قُلُوبِهِمۡ وَعَلَىٰ سَمۡعِهِمۡۖ وَعَلَىٰٓ أَبۡصَٰرِهِمۡ غِشَٰوَةٞۖ وَلَهُمۡ عَذَابٌ عَظِيمٞ ٧ 
 `;
-const Surah = () => {
-  const { surahName, surahBorder, ayat, textSize, colors } = useStore();
+function useWindowSize() {
+  // Initialize state with undefined width/height so server and client renders match
+  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
 
-  // convert english numbers to arabic numbers
-  const convertNumbers = (str) => {
-    const arabicNumbers =
-      "\u0660\u0661\u0662\u0663\u0664\u0665\u0666\u0667\u0668\u0669";
-    return new String(str).replace(/[0123456789]/g, (num) => {
-      return arabicNumbers[num];
-    });
-  };
+  useEffect(() => {
+    // only execute all the code below in client side
+    // Handler to call on window resize
+    function handleResize() {
+      // Set window width/height to state
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Call handler right away so state gets updated with initial window size
+    handleResize();
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); // Empty array ensures that effect is only run on mount
+  return windowSize;
+}
+
+const Surah = () => {
+  const {
+    surahName,
+    surahBorder,
+    ayat,
+    textSize,
+    colors,
+    ayaNumber,
+    imgHtml,
+    useTranslation,
+    ayatTranslation,
+  } = useStore();
+  const size = useWindowSize();
+  const [width, setWidth] = useState(0);
+
+  const elementref = useRef(null);
+
+  useEffect(() => {
+    setWidth(elementref.current.offsetWidth);
+
+    console.log(elementref.current.offsetWidth);
+  }, [size.width]);
+
+  // find surah number from surah name
+  const surahId = versesInArabic.find((item) => {
+    if (item.surahName === surahName) {
+      return item.id;
+    }
+  });
+  const surahNumber = surahId.id;
+
+  const ayaFont = "UthmanicHafs";
+  const surahNameFont = "surahName";
+  const bismAllahFont = "basmallah";
+  const englishTranslationFont = "OpenSans";
+
+  const translation = useTranslation ? 1 : 0;
+
+  const text = eval("`" + ayat + "`");
+  const translationText = eval("`" + ayatTranslation + "`");
+  const html = eval("`" + imgHtml + "`");
 
   return (
     <motion.div
       className="flex flex-col justify-center items-center
     w-[100%]
-    
     
    "
     >
@@ -53,94 +114,16 @@ const Surah = () => {
                 flexDirection: "column",
               }}
             >
-              <div
-                className={`flex flex-col items-center justify-center
-              w-[80%]
-            
-             min-h-[100%]
-              p-5
-              rounded-3xl
-            
-            `}
-                style={{
-                  background: colors["background"],
-                }}
-              >
+              {
                 <div
-                  className="flex justify-center items-center w-[100%]  relative
-                  mb-2
-                  flex-wrap
-                  flex-row  
+                  ref={elementref}
+                  className="w-[80%]
+                  sm:w-[100%]
                 "
                 >
-                  <Image
-                    src={surahBorder ? surahBorder : images.ayaBorder}
-                    alt="border"
-                    className="w-[500px] "
-                    style={{
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
-
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      border: "none",
-                      textAlign: "justify",
-                    }}
-                    width={500}
-                    height={500}
-                  />
-                  <h2
-                    style={{
-                      fontSize: "30px",
-                      top: "50%",
-                      fontFamily: "surahName",
-                      left: "50%",
-                      margin: "2px auto",
-                      transform: "translate(-50%,-50%)",
-                      position: "absolute",
-                      zIndex: "1",
-                      color: colors["color"],
-                    }}
-                  >
-                    1
-                  </h2>
+                  {parse(html)}
                 </div>
-                <h3
-                  style={{
-                    fontFamily: "basmallah",
-                    fontSize: "40px",
-                    color: "black",
-                  }}
-                  className="mb-2 mt-2"
-                >
-                  ﷽
-                </h3>
-
-                <p
-                  style={{
-                    fontFamily: "UthmanicHafs",
-                    fontSize: `${textSize}px`,
-                    textAlign: "justify",
-                    color: colors["color"],
-                  }}
-                  dir="rtl"
-                >
-                  {ayat?.map((aya, index) => (
-                    <>
-                      <span>{aya}</span>
-                      <span
-                        style={{
-                          color: colors["assets"],
-                        }}
-                      >
-                        {convertNumbers(index + 1)}
-                      </span>
-                    </>
-                  ))}
-                </p>
-              </div>
+              }
             </TransformComponent>
           </>
         )}

@@ -83,9 +83,9 @@ const Navbar = () => {
           }}
         >
           <BiSolidRightArrow
-            className="
-             mr-2   
-            "
+            className={`
+              ${translation === "English" ? "mr-2" : "ml-2"}
+            `}
           />
           <span>
             {translation === "English"
