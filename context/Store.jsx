@@ -23,12 +23,12 @@ export const StoreProvider = ({ children }) => {
   const [surahBorder, setSurahBorder] = useState("");
   const [ayat, setAyat] = useState([]);
   const [colors, setColors] = useState({
-    background: "#c7c7c7",
-    color: "#fcb7b7",
-    assets: "#000000",
+    background: "#000000",
+    color: "#ffffff",
+    assets: "#a27a50",
   });
 
-  const [textSize, setTextSize] = useState(16);
+  const [textSize, setTextSize] = useState(50);
   /***************************************************** */
 
   useEffect(() => {
