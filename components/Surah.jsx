@@ -117,6 +117,10 @@ const Surah = () => {
                 alignItems: "center",
                 flexDirection: "column",
               }}
+              wrapperStyle={{
+                width: "100%",
+                height: "100%",
+              }}
             >
               {
                 <div
