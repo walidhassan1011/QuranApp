@@ -12,21 +12,61 @@ export const StoreProvider = ({ children }) => {
     start: 1,
     end: 1,
   });
+  const [imgHtml, setImgHtml] = useState();
 
   const [translation, setTranslation] = useState("English");
-
+  const [useTranslation, setUseTranslation] = useState(false);
+  const [ayatTranslation, setAyatTranslation] = useState([]);
   const [alert, setAlert] = useState(false);
   const [generated, setGenerated] = useState(false);
   const [surahImage, setSurahImage] = useState("");
   const [surahBorder, setSurahBorder] = useState("");
-  const [ayat, setAyat] = useState("");
+  const [ayat, setAyat] = useState([]);
   const [colors, setColors] = useState({
-    background: "#c7c7c7",
-    color: "#fcb7b7",
-    assets: "#000000",
+    background: "#000000",
+    color: "#ffffff",
+    assets: "#a27a50",
   });
-  const [textSize, setTextSize] = useState(16);
+
+  const [textSize, setTextSize] = useState(50);
   /***************************************************** */
+
+  useEffect(() => {
+    const fetchSurahImage = async () => {
+      const res = await API.get("/getHTML");
+      const data = res.data;
+
+      setImgHtml(data);
+    };
+    fetchSurahImage();
+  }, []);
+  /***************************************************** */
+
+  useEffect(() => {
+    const getTranslation = async () => {
+      if (!useTranslation) {
+        setAyatTranslation([]);
+        return;
+      }
+      const { id } = versesInArabic?.find(
+        (item) => item?.surahName === surahName
+      );
+
+      const res = await API.get("/getTranslation", {
+        params: {
+          surah: id,
+          start: ayaNumber.start,
+          end: ayaNumber.end,
+        },
+      });
+      const data = res.data;
+
+      setAyatTranslation(data);
+    };
+    getTranslation();
+  }, [useTranslation, surahName, ayaNumber]);
+
+  /*****************************************************/
   useEffect(() => {
     const fetchAayat = async () => {
       try {
@@ -34,19 +74,30 @@ export const StoreProvider = ({ children }) => {
           return;
         }
 
+        // if (ayaNumber.start > ayaNumber.end) {
+        //   setAyaNumber({ start: 1, end: 1 });
+        //   console.log("start is greater than end");
+        //   return;
+        // }
+        if (ayaNumber.start === null || ayaNumber.end === null) {
+          return;
+        }
+
         const { id } = versesInArabic?.find(
           (item) => item?.surahName === surahName
         );
-        const res = await API.get("/getText", {
+
+        const res = await API.get("/getTextHTML", {
           params: {
             surah: id,
             start: ayaNumber.start,
             end: ayaNumber.end,
           },
         });
+
         const data = res.data;
+
         setAyat(data);
-        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -100,7 +151,7 @@ export const StoreProvider = ({ children }) => {
           bgColor: colors.background,
           textColor: colors.color,
           assColor: colors.assets,
-          width: 2000,
+          width: 1024,
           fontSize: textSize,
         },
 
@@ -138,6 +189,11 @@ export const StoreProvider = ({ children }) => {
         surahImage,
         setSurahImage,
         ayat,
+        ayatTranslation,
+        useTranslation,
+        setUseTranslation,
+        imgHtml,
+        setImgHtml,
         fetchSurahImage,
         setAyat,
         generated,

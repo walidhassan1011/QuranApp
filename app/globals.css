@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+body {
+  overflow-x: hidden;
+}
 @font-face {
   font-family: "UthmanicHafs";
   src: url("../fonts/quran/uthmanic_hafs/UthmanicHafs1Ver18.ttf");

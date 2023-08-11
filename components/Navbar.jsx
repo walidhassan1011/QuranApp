@@ -41,7 +41,7 @@ const Navbar = () => {
           style={
             "bg-[#F5F5F5] rounded-[5px]  p-2 flex justify-between  items-center w-[136px] border-[0px] cursor-pointer px-4 "
           }
-          onChange={(e) => {
+          onchange={(e) => {
             setTranslation(e.target.value);
           }}
         >
@@ -83,9 +83,9 @@ const Navbar = () => {
           }}
         >
           <BiSolidRightArrow
-            className="
-             mr-2   
-            "
+            className={`
+              ${translation === "English" ? "mr-2" : "ml-2"}
+            `}
           />
           <span>
             {translation === "English"

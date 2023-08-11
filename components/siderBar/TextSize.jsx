@@ -34,9 +34,6 @@ const TextSize = () => {
             min={16}
             value={textSize}
             onChange={(e) => {
-              if (e.target.value < 16) {
-                return setTextSize(16);
-              }
               setTextSize(e.target.value);
             }}
             id=""

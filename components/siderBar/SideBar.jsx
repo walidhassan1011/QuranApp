@@ -18,6 +18,7 @@ const colorTitle = ["background", "assets"];
 const SideBar = () => {
   const [show, setShow] = useState(true);
   const { translation } = useStore();
+
   return (
     <>
       <AnimatePresence>
@@ -34,10 +35,19 @@ const SideBar = () => {
     
     px-2
     "
-            initial={{ x: "-100%" }}
+            initial={{
+              x: `
+              ${translation === "English" ? "-100%" : "100%"}
+            `,
+            }}
             animate={{ x: 0 }}
             transition={{ duration: 0.5, ease: easeOut }}
-            exit={{ x: "-100%", transition: { duration: 0.5, ease: easeOut } }}
+            exit={{
+              x: `
+              ${translation === "English" ? "-100%" : "100%"}
+            `,
+              transition: { duration: 0.5, ease: easeOut },
+            }}
           >
             <motion.div
               className="flex justify-center items-start
@@ -49,9 +59,15 @@ const SideBar = () => {
             bg-white
             rounded-[10px]
         "
-              initial={{ x: "-100%" }}
+              initial={{
+                x: `
+              ${translation === "English" ? "-100%" : "100%"}
+              `,
+              }}
               exit={{
-                x: "-100%",
+                x: `
+                  ${translation === "English" ? "-100%" : "100%"}
+                `,
                 transition: { duration: 0.5, ease: easeOut },
               }}
               animate={{ x: 0 }}
@@ -107,18 +123,18 @@ const SideBar = () => {
       <AnimatePresence>
         {!show && (
           <motion.div
-            className="flex justify-end items-center 
+            className={`flex justify-end items-center 
           bg-white
           p-2
         absolute
         top-[50%]
-        left-[1%]
+        ${translation === "English" ? "left-[1%]" : "right-[1%]"}
         z-10
         
 
           rounded-[10px]
           
-        "
+        `}
           >
             <BiRightArrowAlt
               className="text-[#000000] 
