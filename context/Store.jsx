@@ -45,6 +45,7 @@ export const StoreProvider = ({ children }) => {
   useEffect(() => {
     const getTranslation = async () => {
       if (!useTranslation) {
+        setAyatTranslation([]);
         return;
       }
       const { id } = versesInArabic?.find(
