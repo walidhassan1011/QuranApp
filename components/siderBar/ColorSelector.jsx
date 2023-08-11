@@ -56,7 +56,7 @@ const ColorSelector = ({ title }) => {
           style={{
             ...styles.color,
             backgroundColor: colors[title] ? colors[title] : "#000000",
-            border: isFocused ? "2px solid #4687ff" : "none",
+            border: isFocused ? "2px solid #4687ff" : "2px solid #c7c7c7",
           }}
           onClick={(e) => {
             console.log(e);

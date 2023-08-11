@@ -12,7 +12,7 @@ export const StoreProvider = ({ children }) => {
     start: 1,
     end: 1,
   });
-  const [imgHtml, setImgHtml] = useState("");
+  const [imgHtml, setImgHtml] = useState();
 
   const [translation, setTranslation] = useState("English");
   const [useTranslation, setUseTranslation] = useState(false);
@@ -35,7 +35,7 @@ export const StoreProvider = ({ children }) => {
     const fetchSurahImage = async () => {
       const res = await API.get("/getHTML");
       const data = res.data;
-      console.log(data);
+
       setImgHtml(data);
     };
     fetchSurahImage();
