@@ -134,7 +134,7 @@ export const StoreProvider = ({ children }) => {
       if (surahName === "") {
         return;
       }
-      console.log(surahName);
+      
 
       const { id } = versesInArabic?.find(
         (item) => item.surahName === surahName

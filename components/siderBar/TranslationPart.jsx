@@ -63,9 +63,7 @@ const TranslationPart = () => {
                 "bg-[#F5F5F5] rounded-[5px] p-1 flejustify-between  items-center w-[132px] border-[0px] cursor-pointer px-4"
               }
             >
-              {lang.map((item, index) => {
-                return <DropDownItem key={index}>{item}</DropDownItem>;
-              })}
+              <DropDownItem>English</DropDownItem>;
             </DropDown>
           </div>
         </div>

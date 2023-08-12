@@ -35,7 +35,7 @@ const styles = reactCSS({
   },
 });
 
-const ColorSelector = ({ title }) => {
+const ColorSelector = ({ title, toggle, open }) => {
   const { colors, setColors } = useStore();
 
   const [showColorPicker, setShowColorPicker] = useState(false);
@@ -56,16 +56,12 @@ const ColorSelector = ({ title }) => {
           style={{
             ...styles.color,
             backgroundColor: colors[title] ? colors[title] : "#000000",
-            border: isFocused ? "2px solid #4687ff" : "2px solid #c7c7c7",
+            border: isFocused ? "1px solid #4687ff" : "1px solid #c7c7c7",
           }}
-          onClick={(e) => {
-            console.log(e);
-            setShowColorPicker(!showColorPicker);
-            setIsFocused(!isFocused);
-          }}
+          onClick={toggle}
         />
 
-        {showColorPicker ? (
+        {open ? (
           <div
             className="
             absolute

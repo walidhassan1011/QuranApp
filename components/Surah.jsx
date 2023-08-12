@@ -84,7 +84,7 @@ const Surah = () => {
   const translationText = ayatTranslation;
 
   // convert string to html with ${} variables
-  console.log(imgHtml);
+
   const html = eval("`" + imgHtml + "`");
 
   return (

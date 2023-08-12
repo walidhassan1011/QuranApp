@@ -14,11 +14,18 @@ import { useStore } from "@/context/Store";
 import { lang } from "@/constants/lang";
 import translationlang from "@/constants/translation";
 /********************************** */
-const colorTitle = ["background", "assets"];
+const colorTitle = ["Color", "background", "assets"];
 const SideBar = () => {
   const [show, setShow] = useState(true);
   const { translation } = useStore();
+  const [open, setOpen] = useState(false);
+  const toggle = (index) => {
+    if (open === index) {
+      return setOpen(null);
+    }
 
+    setOpen(index);
+  };
   return (
     <>
       <AnimatePresence>
@@ -106,15 +113,28 @@ const SideBar = () => {
                   : translationlang.ar.text}
               </h1>
               <TextSize />
-              <Customize title={"color"} />
-              <hr className="w-[100%] h-[1px] bg-[#E5E5E5] my-2" />
-              <h1 className="text-[#000000] font-bold">
-                {translation === "English"
-                  ? translationlang.en.effects
-                  : translationlang.ar.effects}
-              </h1>
-              {colorTitle.map((title) => {
-                return <Customize title={title} key={title} />;
+
+              {colorTitle.map((title, index) => {
+                return (
+                  <>
+                    <Customize
+                      title={title}
+                      key={index}
+                      toggle={() => toggle(index)}
+                      open={open === index}
+                    />
+                    {index == 0 ? (
+                      <>
+                        <hr className="w-[100%] h-[1px] bg-[#E5E5E5] my-2" />
+                        <h1 className="text-[#000000] font-bold">
+                          {translation === "English"
+                            ? translationlang.en.effects
+                            : translationlang.ar.effects}
+                        </h1>
+                      </>
+                    ) : null}
+                  </>
+                );
               })}
             </motion.div>
           </motion.div>
