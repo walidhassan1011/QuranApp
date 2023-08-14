@@ -43,7 +43,7 @@ const ColorSelector = ({ title, toggle, open, setOpen }) => {
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
-        // setOpen(false);
+        setOpen(false);
       }
     };
     document.addEventListener("click", handleOutsideClick, true);
