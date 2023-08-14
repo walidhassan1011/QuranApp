@@ -1,7 +1,7 @@
 "use strict";
 
 import { useStore } from "@/context/Store";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { SketchPicker } from "react-color";
 import reactCSS from "reactcss";
 const styles = reactCSS({
@@ -35,12 +35,22 @@ const styles = reactCSS({
   },
 });
 
-const ColorSelector = ({ title, toggle, open }) => {
+const ColorSelector = ({ title, toggle, open, setOpen }) => {
   const { colors, setColors } = useStore();
+  // onclick outside the color picker to close it
+  const ref = useRef();
 
-  const [showColorPicker, setShowColorPicker] = useState(false);
-
-  const [isFocused, setIsFocused] = useState(false);
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        // setOpen(false);
+      }
+    };
+    document.addEventListener("click", handleOutsideClick, true);
+    return () => {
+      document.addEventListener("click", handleOutsideClick, true);
+    };
+  }, []);
 
   return (
     <>
@@ -56,8 +66,9 @@ const ColorSelector = ({ title, toggle, open }) => {
           style={{
             ...styles.color,
             backgroundColor: colors[title] ? colors[title] : "#000000",
-            border: isFocused ? "1px solid #4687ff" : "1px solid #c7c7c7",
+            border: open ? "1px solid #4687ff" : "1px solid #c7c7c7",
           }}
+          ref={ref}
           onClick={toggle}
         />
 
@@ -77,7 +88,15 @@ const ColorSelector = ({ title, toggle, open }) => {
           >
             <SketchPicker
               color={colors[title]}
-              onChange={(color) => {
+              // onChange={(color) => {
+              //   setColors((prev) => {
+              //     return {
+              //       ...prev,
+              //       [title]: color.hex,
+              //     };
+              //   });
+              // }}
+              onChangeComplete={(color) => {
                 setColors((prev) => {
                   return {
                     ...prev,

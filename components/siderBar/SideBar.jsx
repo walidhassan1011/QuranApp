@@ -14,11 +14,12 @@ import { useStore } from "@/context/Store";
 import { lang } from "@/constants/lang";
 import translationlang from "@/constants/translation";
 /********************************** */
-const colorTitle = ["Color", "background", "assets"];
+const colorTitle = ["color", "background", "assets"];
 const SideBar = () => {
   const [show, setShow] = useState(true);
   const { translation } = useStore();
   const [open, setOpen] = useState(false);
+
   const toggle = (index) => {
     if (open === index) {
       return setOpen(null);
@@ -26,6 +27,7 @@ const SideBar = () => {
 
     setOpen(index);
   };
+
   return (
     <>
       <AnimatePresence>
@@ -122,6 +124,7 @@ const SideBar = () => {
                       key={index}
                       toggle={() => toggle(index)}
                       open={open === index}
+                      setOpen={setOpen}
                     />
                     {index == 0 ? (
                       <>

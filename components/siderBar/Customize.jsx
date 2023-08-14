@@ -3,7 +3,7 @@ import ColorSelector from "./ColorSelector";
 import { useStore } from "@/context/Store";
 import translationlang from "@/constants/translation";
 
-const Customize = ({ title, toggle, open }) => {
+const Customize = ({ title, toggle, open, setOpen }) => {
   const { translation } = useStore();
   return (
     <>
@@ -23,7 +23,12 @@ const Customize = ({ title, toggle, open }) => {
           {translation === "English" ? title : translationlang.ar[title]}
         </span>
         <div className="flex justify-between items-center">
-          <ColorSelector title={title} toggle={toggle} open={open} />
+          <ColorSelector
+            title={title}
+            toggle={toggle}
+            open={open}
+            setOpen={setOpen}
+          />
         </div>
       </div>
     </>
