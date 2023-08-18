@@ -43,10 +43,12 @@ const ColorSelector = ({ title, toggle, open, setOpen }) => {
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
-        setOpen(false);
+        setOpen(null);
       }
     };
+
     document.addEventListener("click", handleOutsideClick, true);
+
     return () => {
       document.addEventListener("click", handleOutsideClick, true);
     };
@@ -68,7 +70,6 @@ const ColorSelector = ({ title, toggle, open, setOpen }) => {
             backgroundColor: colors[title] ? colors[title] : "#000000",
             border: open ? "1px solid #4687ff" : "1px solid #c7c7c7",
           }}
-          ref={ref}
           onClick={toggle}
         />
 
@@ -85,18 +86,11 @@ const ColorSelector = ({ title, toggle, open, setOpen }) => {
             w-[180px]
            
             "
+            ref={ref}
           >
             <SketchPicker
               color={colors[title]}
-              // onChange={(color) => {
-              //   setColors((prev) => {
-              //     return {
-              //       ...prev,
-              //       [title]: color.hex,
-              //     };
-              //   });
-              // }}
-              onChangeComplete={(color) => {
+              onChange={(color) => {
                 setColors((prev) => {
                   return {
                     ...prev,
