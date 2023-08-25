@@ -13,6 +13,7 @@ const TextSize = () => {
         w-[100%]
         items-center
         p-2
+       
         
       "
       >

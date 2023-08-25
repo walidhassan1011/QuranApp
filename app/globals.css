@@ -3,6 +3,7 @@
 @tailwind utilities;
 body {
   overflow-x: hidden;
+  background-color: #f7f7f7;
 }
 @font-face {
   font-family: "UthmanicHafs";
@@ -22,4 +23,56 @@ body {
   src: url("../fonts/quran/Damascus.ttf");
   font-weight: normal;
   font-style: normal;
+}
+
+/* input[type="range"]::-webkit-slider-runnable-track {
+  height: 10px;
+  background: #828282e3;
+  border-radius: 3px;
+  border: none;
+} */
+/* input[type="range"]::-webkit-slider-thumb {
+  border: none;
+  height: 16px;
+  width: 16px;
+  background-color: black;
+  border-radius: 50%;
+  background: black;
+  margin-top: -4px;
+} */
+#range1 {
+  -webkit-appearance: none;
+  appearance: none;
+  background: grey;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+/* #range1::-webkit-slider-runnable-track {
+  background: #ccc;
+  height: 16px;
+}
+
+#range1::-moz-range-track {
+  background: #ccc;
+  height: 16px;
+  border-radius: 16px;
+} */
+
+#range1::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 16px;
+  background-color: white;
+
+  box-shadow: -407px 0 0 400px black;
+}
+
+#range1::-moz-range-thumb {
+  background-color: black;
+
+  border: 1px solid black;
+  box-shadow: -407px 0 0 400px black;
 }

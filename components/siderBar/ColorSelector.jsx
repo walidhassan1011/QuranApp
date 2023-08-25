@@ -60,7 +60,7 @@ const ColorSelector = ({ title, toggle, open, setOpen }) => {
         className="
         relative
 
-        
+       
         
         "
       >

@@ -12,7 +12,7 @@ const Customize = ({ title, toggle, open, setOpen }) => {
       w-[100%]
       p-2
       items-center
-      
+     
     "
       >
         <span

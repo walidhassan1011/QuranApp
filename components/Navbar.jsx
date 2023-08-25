@@ -20,6 +20,13 @@ const Navbar = () => {
     <nav
       className="flex justify-between items-center 
         py-4 bg-white px-[15px]
+        sm:px-[10px]
+        sm:fixed
+        sm:top-0
+        sm:z-50
+        sm:w-[100%]
+        
+        
     "
     >
       <motion.div
@@ -39,7 +46,7 @@ const Navbar = () => {
       >
         <DropDown
           style={
-            "bg-[#F5F5F5] rounded-[5px]  p-2 flex justify-between  items-center w-[136px] border-[0px] cursor-pointer px-4 "
+            "bg-[#F5F5F5] rounded-[5px]  p-2 flex justify-between  items-center w-[136px] border-[0px] cursor-pointer px-4 sm:px-2 sm:w-[100px]   "
           }
           onchange={(e) => {
             setTranslation(e.target.value);
@@ -54,8 +61,8 @@ const Navbar = () => {
         <span
           style={{
             fontFamily: "basmallah",
-            fontSize: "2rem",
           }}
+          className="sm:text-[1rem] text-[2rem]"
         >
           ﷽
         </span>
@@ -76,6 +83,11 @@ const Navbar = () => {
         flex
         items-center
         justify-between
+        sm:px-7
+        sm:py-2
+        
+        sm:rounded-[5px]
+        
          
         "
           onClick={() => {
@@ -85,9 +97,10 @@ const Navbar = () => {
           <BiSolidRightArrow
             className={`
               ${translation === "English" ? "mr-2" : "ml-2"}
+              sm:m-0
             `}
           />
-          <span>
+          <span className="sm:hidden">
             {translation === "English"
               ? translationlang.en.generate
               : translationlang.ar.generate}

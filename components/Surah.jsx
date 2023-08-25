@@ -92,6 +92,7 @@ const Surah = () => {
     <motion.div
       className="flex flex-col justify-center items-center
     w-[100%]
+    sm:mt-[50px]
     
    "
     >
@@ -110,7 +111,7 @@ const Surah = () => {
             <TransformComponent
               contentStyle={{
                 width: "100%",
-                minHeight: "88.5vh",
+
                 textAlign: "center",
                 display: "flex",
                 padding: "20px",
@@ -121,6 +122,8 @@ const Surah = () => {
               wrapperStyle={{
                 width: "100%",
                 height: "100%",
+
+                display: "flex",
               }}
             >
               {
@@ -130,7 +133,7 @@ const Surah = () => {
                   sm:w-[100%]
                 "
                 >
-                  {parse(html) ? parse(html) : <Loading />}
+                  {parse(html)}
                 </div>
               }
             </TransformComponent>

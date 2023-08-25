@@ -1,28 +1,25 @@
-"use client";
-import { versesInArabic } from "@/constants/ayatNumbers";
-
-import { useStore } from "@/context/Store";
-
 import React from "react";
-
-import DropDown from "../dropdown/DropDown";
-import DropDownItem from "../dropdown/DropDownItem";
+import DropDown from "../../dropdown/DropDown";
+import DropDownItem from "../../dropdown/DropDownItem";
 import translationlang from "@/constants/translation";
-
+import { versesInArabic } from "@/constants/ayatNumbers";
+import { useStore } from "@/context/Store";
 const SurahPart = () => {
   const { surahName, setSurahName, translation } = useStore();
-
   return (
     <div
       className="flex justify-between items-center
-        
-        p-1
-        px-2
-       
-        w-[100%]
-        
 
-    "
+      
+p-6
+py-2
+w-[100%]
+
+gap-[2rem]
+
+
+
+"
     >
       <span>
         {translation === "English"
@@ -34,7 +31,7 @@ const SurahPart = () => {
           setSurahName(e.target.value);
         }}
         style={
-          "bg-[#F5F5F5] rounded-[5px]  p-2 flejustify-between  items-center w-[175px] border-[0px] cursor-pointer px-4"
+          "bg-[#F5F5F5] rounded-[5px]  p-2 flejustify-between  items-center w-[100%] border-[0px] cursor-pointer px-4"
         }
       >
         {versesInArabic?.map((item, index) => {
