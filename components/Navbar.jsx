@@ -46,7 +46,7 @@ const Navbar = () => {
       >
         <DropDown
           style={
-            "bg-[#F5F5F5] rounded-[5px]  p-2 flex justify-between  items-center w-[136px] border-[0px] cursor-pointer px-4 sm:px-2 sm:w-[100px]   "
+            "bg-[#F5F5F5] rounded-[5px]  p-2 flex justify-between  items-center w-[136px] border-[0px] cursor-pointer px-4 sm:px-2 sm:w-[110px]   "
           }
           onchange={(e) => {
             setTranslation(e.target.value);

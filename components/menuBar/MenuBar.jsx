@@ -44,7 +44,7 @@ const MenuBar = () => {
     },
     {
       id: 3,
-      name: "text",
+      name: "Text",
       subName: "Color",
       icon: (
         <div
@@ -57,7 +57,7 @@ const MenuBar = () => {
     },
     {
       id: 4,
-      name: "Background ",
+      name: "Background",
       subName: "",
       icon: (
         <div
@@ -83,6 +83,7 @@ const MenuBar = () => {
       ),
     },
   ];
+
   return (
     <>
       <>
@@ -163,43 +164,44 @@ const MenuBar = () => {
           }
         </AnimatePresence>
         <AnimatePresence>
-          {
-            // Text Color
-            open === 3 && (
-              <motion.div
-                className=" justify-between items-center 
-    flex-col
-    w-[100%]
- 
-    backdrop-blur-lg
-    hidden
-    sm:!flex
-   p-2
-    
- 
-   fixed
+          {listItems.slice(2, 5).map((item, index) => {
+            return (
+              open === item.id && (
+                <motion.div
+                  className=" justify-between items-center 
+      flex-col
+      w-[100%]
    
+      backdrop-blur-lg
+      hidden
+      sm:!flex
+     p-2
+      
    
-    left-[0px]
-    "
-                initial={{
-                  bottom: -100,
-                }}
-                animate={{
-                  bottom: 100,
-                }}
-                transition={{
-                  duration: 0.5,
-                  ease: "linear",
-                }}
-                exit={{
-                  bottom: -100,
-                }}
-              >
-                <ColorWrap />
-              </motion.div>
-            )
-          }
+     fixed
+     
+     
+      left-[0px]
+      "
+                  initial={{
+                    bottom: -100,
+                  }}
+                  animate={{
+                    bottom: 100,
+                  }}
+                  transition={{
+                    duration: 0.5,
+                    ease: "linear",
+                  }}
+                  exit={{
+                    bottom: -100,
+                  }}
+                >
+                  <ColorWrap color={item.name.toLowerCase()} />
+                </motion.div>
+              )
+            );
+          })}
         </AnimatePresence>
       </>
 
@@ -230,6 +232,7 @@ const MenuBar = () => {
              w-[100%]
              gap-[0.5rem]
              overflow-x-scroll
+             pb-[0.5rem]
             "
         >
           {listItems.map((item, index) => {
@@ -241,11 +244,13 @@ const MenuBar = () => {
                     flex-col
                    py-[0.5rem]
                     px-[0.5rem]
+                    h-[4.5rem]
+                    
                     ${
                       open === item.id &&
                       "border-[1px] border-solid border-[#1F396E] font-bold"
                     }
-                    bg-[#F4F4F4]
+                    bg-[#f7f7f7]
                     rounded-[7px]
                     
                     `}
@@ -265,7 +270,9 @@ const MenuBar = () => {
                   >
                     {item.name}
                   </span>
-                  <span>{item.subName}</span>
+                  <span className="text-[#1F396E] text-[1rem] leading-[1rem]">
+                    {item.subName}
+                  </span>
                 </div>
               </div>
             );
