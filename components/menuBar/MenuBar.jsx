@@ -94,7 +94,7 @@ const MenuBar = () => {
       flex-col
       w-[100%]
       
-      backdrop-blur-lg
+     
       
       hidden
       sm:!flex
@@ -133,7 +133,6 @@ const MenuBar = () => {
       flex-col
       w-[100%]
    
-      backdrop-blur-lg
       hidden
       sm:!flex
      p-2
@@ -172,7 +171,7 @@ const MenuBar = () => {
       flex-col
       w-[100%]
    
-      backdrop-blur-lg
+      
       hidden
       sm:!flex
      p-2
@@ -240,7 +239,7 @@ const MenuBar = () => {
               <div
                 key={index}
                 onClick={() => {
-                  toggle(item.id)
+                  toggle(item.id);
                 }}
                 className={`flex justify-between items-center 
                     flex-col
