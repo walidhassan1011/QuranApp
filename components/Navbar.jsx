@@ -16,6 +16,9 @@ const Navbar = () => {
     translation,
     setTranslation,
   } = useStore();
+  const removeScrollInBody = () => {
+    document.body.style.overflow = "hidden";
+  };
   return (
     <nav
       className="flex justify-between items-center 
@@ -91,6 +94,7 @@ const Navbar = () => {
          
         "
           onClick={() => {
+            removeScrollInBody();
             fetchSurahImage();
           }}
         >

@@ -5,7 +5,7 @@ import translationlang from "@/constants/translation";
 import { versesInArabic } from "@/constants/ayatNumbers";
 import { useStore } from "@/context/Store";
 const SurahPart = () => {
-  const { surahName, setSurahName, translation } = useStore();
+  const { surahName, setSurahName, translation, setAyaNumber } = useStore();
   return (
     <div
       className="flex justify-between items-center
@@ -29,6 +29,10 @@ gap-[2rem]
       <DropDown
         onchange={(e) => {
           setSurahName(e.target.value);
+          setAyaNumber({
+            start: 1,
+            end: 1,
+          });
         }}
         style={
           "bg-[#F5F5F5] rounded-[5px]  p-2 flejustify-between  items-center w-[100%] border-[0px] cursor-pointer px-4"

@@ -4,8 +4,10 @@ import Surah from "./Surah";
 import SideBar from "./siderBar/SideBar";
 import { useStore } from "@/context/Store";
 import { Lightbox } from "react-modal-image";
+import ModelPage from "./ModelPage";
 const Hero = () => {
   const { generated, setGenerated, surahImage, setSurahImage } = useStore();
+
   return (
     <div
       className="flex justify-around items-start
@@ -23,11 +25,13 @@ const Hero = () => {
       <SideBar />
       <Surah />
       {generated && (
-        <Lightbox
-          medium={surahImage}
-          large={surahImage}
-          onClose={() => setGenerated(false)}
-        />
+        // <Lightbox
+        //   medium={surahImage}
+        //   large={surahImage}
+        //   onClose={() => setGenerated(false)}
+        // />
+
+        <ModelPage />
       )}
     </div>
   );

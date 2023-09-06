@@ -17,7 +17,15 @@ import translationlang from "@/constants/translation";
 const colorTitle = ["color", "background", "assets"];
 const SideBar = () => {
   const [show, setShow] = useState(true);
-  const { translation } = useStore();
+  const {
+    translation,
+    setSurahName,
+    setAyaNumber,
+    setColors,
+    surahName,
+    ayaNumber,
+    colors,
+  } = useStore();
   const [open, setOpen] = useState(false);
 
   const toggle = (index) => {
@@ -175,7 +183,14 @@ const SideBar = () => {
           cursor-pointer
 
           "
-              onClick={() => setShow(true)}
+              onClick={() => {
+                // state the state to the previous state
+                setAyaNumber((prev) => prev);
+                setSurahName((prev) => prev);
+                setColors((prev) => prev);
+
+                setShow(true);
+              }}
             />
           </motion.div>
         )}

@@ -239,7 +239,9 @@ const MenuBar = () => {
             return (
               <div
                 key={index}
-                onClick={() => toggle(item.id)}
+                onClick={() => {
+                  toggle(item.id)
+                }}
                 className={`flex justify-between items-center 
                     flex-col
                    py-[0.5rem]
