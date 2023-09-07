@@ -19,7 +19,7 @@ const Hero = () => {
     sm:items-center
     lg:min-h-full
     lg:py-6
-    
+    overflow-x-hidden
     "
     >
       <SideBar />

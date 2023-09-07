@@ -58,51 +58,7 @@ const ModelPage = () => {
             className="
           w-[100%]
             mt-2
-            flex justify-end items-center
-          "
-          >
-            <AiOutlineClose
-              className="text-black text-3xl cursor-pointer"
-              onClick={() => {
-                setGenerated(false);
-                document.body.style.overflow = "auto";
-                setSurahImage("");
-              }}
-            />
-          </div>
-          <div
-            className="flex justify-center items-center 
-            bg-[#F5F5F5]
-            w-[100%]    
-           min-h-[300px]
-     
-            mt-5
-        
-            "
-          >
-            {surahImage ? (
-              <Image
-                src={surahImage}
-                alt="surah"
-                width={500}
-                height={500}
-                className="
-                w-[100%]
-                h-[100%]
-                "
-              />
-            ) : (
-              <>
-                <SpinnerLoader />
-              </>
-            )}
-          </div>
-          <div
-            className="flex justify-center items-center px-5 py-2
-            w-[100%]
-            text-center
-            mt-5
-            
+            flex justify-between items-center
           "
           >
             <button
@@ -130,12 +86,46 @@ const ModelPage = () => {
             `}
               />
               <span className="">
-                {/* {translation === "English"
-                  ? translationlang.en.generate
-                  : translationlang.ar.generate} */}
-                Download
+                {translation === "English"
+                  ? translationlang.en.download
+                  : translationlang.ar.download}
               </span>
             </button>
+            <AiOutlineClose
+              className="text-black text-3xl cursor-pointer"
+              onClick={() => {
+                setGenerated(false);
+                document.body.style.overflow = "auto";
+                setSurahImage("");
+              }}
+            />
+          </div>
+          <div
+            className="flex justify-center items-center 
+            bg-[#F5F5F5]
+            w-[100%]    
+           min-h-[300px]
+              
+            mt-5
+              mb-5
+            "
+          >
+            {surahImage ? (
+              <Image
+                src={surahImage}
+                alt="surah"
+                width={500}
+                height={500}
+                className="
+                w-[100%]
+                h-[100%]
+                "
+              />
+            ) : (
+              <>
+                <SpinnerLoader />
+              </>
+            )}
           </div>
         </div>
       </div>
