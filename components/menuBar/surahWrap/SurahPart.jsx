@@ -4,6 +4,7 @@ import DropDownItem from "../../dropdown/DropDownItem";
 import translationlang from "@/constants/translation";
 import { versesInArabic } from "@/constants/ayatNumbers";
 import { useStore } from "@/context/Store";
+import SurahFullName from "@/constants/SurahFullNames";
 const SurahPart = () => {
   const { surahName, setSurahName, translation, setAyaNumber } = useStore();
   return (
@@ -28,7 +29,15 @@ gap-[2rem]
       </span>
       <DropDown
         onchange={(e) => {
-          setSurahName(e.target.value);
+          const surahId = parseInt(e.target.value.split(" ")[0]);
+
+          const surahName = versesInArabic.find((item) => {
+            if (item.id === surahId) {
+              return item.surahName;
+            }
+          });
+
+          setSurahName(surahName.surahName);
           setAyaNumber({
             start: 1,
             end: 1,
@@ -38,8 +47,8 @@ gap-[2rem]
           "bg-[#F5F5F5] rounded-[5px]  p-2 flejustify-between  items-center w-[100%] border-[0px] cursor-pointer px-4"
         }
       >
-        {versesInArabic?.map((item, index) => {
-          return <DropDownItem key={index}>{item.surahName}</DropDownItem>;
+        {SurahFullName?.map((item, index) => {
+          return <DropDownItem key={index}>{item}</DropDownItem>;
         })}
       </DropDown>
     </div>

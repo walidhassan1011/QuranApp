@@ -26,9 +26,7 @@ const MenuBar = () => {
       id: 1,
       name: "Surah",
       subName: "",
-      icon: (
-        <BsBook className="text-[#1F396E] text-[1.4rem] leading-[1.9rem]" />
-      ),
+      icon: <BsBook className="text-black text-[1.4rem] leading-[1.9rem]" />,
     },
     {
       id: 2,
@@ -36,7 +34,7 @@ const MenuBar = () => {
       subName: "Size",
       icon: (
         <RxLetterCaseCapitalize
-          className="text-[#1F396E] text-[1.4rem] leading-[1.9rem]
+          className="text-black text-[1.4rem] leading-[1.9rem]
                       font-bold
                   "
         />
@@ -49,7 +47,7 @@ const MenuBar = () => {
       icon: (
         <div
           className={`w-[30px]
-                border-[1px] border-solid border-[#1F396E]
+                border-[1px] border-solid border-black
               h-[30px] rounded-[5px] `}
           style={{ backgroundColor: colors.color }}
         />
@@ -63,7 +61,7 @@ const MenuBar = () => {
         <div
           className="w-[30px]
               h-[30px] rounded-[5px] 
-              border-[1px] border-solid border-[#1F396E]
+              border-[1px] border-solid border-black
               "
           style={{ backgroundColor: colors.background }}
         />
@@ -76,7 +74,7 @@ const MenuBar = () => {
       icon: (
         <div
           className="w-[30px]
-          border-[1px] border-solid border-[#1F396E]
+          border-[1px] border-solid border-black
               h-[30px] rounded-[5px] "
           style={{ backgroundColor: colors.assets }}
         />
@@ -215,7 +213,7 @@ const MenuBar = () => {
             sm:!flex
             bg-[#FFFFFF]
             stroke-[#D7D7D7]
-            border-[##1F396E]
+            border-black
            
             z-[50]
             rounded-tr-[20px]
@@ -249,7 +247,7 @@ const MenuBar = () => {
                     
                     ${
                       open === item.id &&
-                      "border-[1px] border-solid border-[#1F396E] font-bold"
+                      "border-[1px] border-solid border-black font-bold"
                     }
                     bg-[#f7f7f7]
                     rounded-[7px]
@@ -265,13 +263,13 @@ const MenuBar = () => {
               "
                 >
                   <span
-                    className="text-[#1F396E] text-[1rem] leading-[1rem]
+                    className="text-black text-[1rem] leading-[1rem]
                 
                 "
                   >
                     {item.name}
                   </span>
-                  <span className="text-[#1F396E] text-[1rem] leading-[1rem]">
+                  <span className="text-black text-[1rem] leading-[1rem]">
                     {item.subName}
                   </span>
                 </div>
