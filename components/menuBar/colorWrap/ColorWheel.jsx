@@ -1,7 +1,8 @@
 import React from "react";
 import { ChromePicker } from "react-color";
-
-const ColorWheel = () => {
+import { useStore } from "@/context/Store";
+const ColorWheel = ({ color }) => {
+  const { colors, setColors } = useStore();
   return (
     <div
       className="flex justify-center items-center
@@ -11,7 +12,15 @@ w-[100%]
     >
       <ChromePicker
         disableAlpha={true}
-        color="#1F396E"
+        color={colors[color === "text" ? "color" : color.toLowerCase()]}
+        onChange={(colorHex) => {
+          setColors((prev) => {
+            return {
+              ...prev,
+              [color === "text" ? "color" : color.toLowerCase()]: colorHex.hex,
+            };
+          });
+        }}
         styles={{
           default: {
             picker: {

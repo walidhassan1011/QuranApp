@@ -13,6 +13,7 @@ const translationlang = {
     generate: "Generate",
     english: "English",
     arabic: "Arabic",
+    download: "Download",
   },
   ar: {
     surah: "سورة",
@@ -28,6 +29,7 @@ const translationlang = {
     generate: "توليد",
     english: "الإنجليزية",
     arabic: "عربى",
+    download: "تحميل",
   },
 };
 

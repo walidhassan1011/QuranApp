@@ -26,9 +26,7 @@ const MenuBar = () => {
       id: 1,
       name: "Surah",
       subName: "",
-      icon: (
-        <BsBook className="text-[#1F396E] text-[1.4rem] leading-[1.9rem]" />
-      ),
+      icon: <BsBook className="text-black text-[1.4rem] leading-[1.9rem]" />,
     },
     {
       id: 2,
@@ -36,7 +34,7 @@ const MenuBar = () => {
       subName: "Size",
       icon: (
         <RxLetterCaseCapitalize
-          className="text-[#1F396E] text-[1.4rem] leading-[1.9rem]
+          className="text-black text-[1.4rem] leading-[1.9rem]
                       font-bold
                   "
         />
@@ -44,12 +42,12 @@ const MenuBar = () => {
     },
     {
       id: 3,
-      name: "text",
+      name: "Text",
       subName: "Color",
       icon: (
         <div
           className={`w-[30px]
-                border-[1px] border-solid border-[#1F396E]
+                border-[1px] border-solid border-black
               h-[30px] rounded-[5px] `}
           style={{ backgroundColor: colors.color }}
         />
@@ -57,13 +55,13 @@ const MenuBar = () => {
     },
     {
       id: 4,
-      name: "Background ",
+      name: "Background",
       subName: "",
       icon: (
         <div
           className="w-[30px]
               h-[30px] rounded-[5px] 
-              border-[1px] border-solid border-[#1F396E]
+              border-[1px] border-solid border-black
               "
           style={{ backgroundColor: colors.background }}
         />
@@ -76,13 +74,14 @@ const MenuBar = () => {
       icon: (
         <div
           className="w-[30px]
-          border-[1px] border-solid border-[#1F396E]
+          border-[1px] border-solid border-black
               h-[30px] rounded-[5px] "
           style={{ backgroundColor: colors.assets }}
         />
       ),
     },
   ];
+
   return (
     <>
       <>
@@ -93,7 +92,7 @@ const MenuBar = () => {
       flex-col
       w-[100%]
       
-      backdrop-blur-lg
+     
       
       hidden
       sm:!flex
@@ -132,7 +131,6 @@ const MenuBar = () => {
       flex-col
       w-[100%]
    
-      backdrop-blur-lg
       hidden
       sm:!flex
      p-2
@@ -163,43 +161,44 @@ const MenuBar = () => {
           }
         </AnimatePresence>
         <AnimatePresence>
-          {
-            // Text Color
-            open === 3 && (
-              <motion.div
-                className=" justify-between items-center 
-    flex-col
-    w-[100%]
- 
-    backdrop-blur-lg
-    hidden
-    sm:!flex
-   p-2
-    
- 
-   fixed
+          {listItems.slice(2, 5).map((item, index) => {
+            return (
+              open === item.id && (
+                <motion.div
+                  className=" justify-between items-center 
+      flex-col
+      w-[100%]
    
+      
+      hidden
+      sm:!flex
+     p-2
+      
    
-    left-[0px]
-    "
-                initial={{
-                  bottom: -100,
-                }}
-                animate={{
-                  bottom: 100,
-                }}
-                transition={{
-                  duration: 0.5,
-                  ease: "linear",
-                }}
-                exit={{
-                  bottom: -100,
-                }}
-              >
-                <ColorWrap />
-              </motion.div>
-            )
-          }
+     fixed
+     
+     
+      left-[0px]
+      "
+                  initial={{
+                    bottom: -100,
+                  }}
+                  animate={{
+                    bottom: 100,
+                  }}
+                  transition={{
+                    duration: 0.5,
+                    ease: "linear",
+                  }}
+                  exit={{
+                    bottom: -100,
+                  }}
+                >
+                  <ColorWrap color={item.name.toLowerCase()} />
+                </motion.div>
+              )
+            );
+          })}
         </AnimatePresence>
       </>
 
@@ -214,7 +213,7 @@ const MenuBar = () => {
             sm:!flex
             bg-[#FFFFFF]
             stroke-[#D7D7D7]
-            border-[##1F396E]
+            border-black
            
             z-[50]
             rounded-tr-[20px]
@@ -230,22 +229,27 @@ const MenuBar = () => {
              w-[100%]
              gap-[0.5rem]
              overflow-x-scroll
+             pb-[0.5rem]
             "
         >
           {listItems.map((item, index) => {
             return (
               <div
                 key={index}
-                onClick={() => toggle(item.id)}
+                onClick={() => {
+                  toggle(item.id);
+                }}
                 className={`flex justify-between items-center 
                     flex-col
                    py-[0.5rem]
                     px-[0.5rem]
+                    h-[4.5rem]
+                    
                     ${
                       open === item.id &&
-                      "border-[1px] border-solid border-[#1F396E] font-bold"
+                      "border-[1px] border-solid border-black font-bold"
                     }
-                    bg-[#F4F4F4]
+                    bg-[#f7f7f7]
                     rounded-[7px]
                     
                     `}
@@ -259,13 +263,15 @@ const MenuBar = () => {
               "
                 >
                   <span
-                    className="text-[#1F396E] text-[1rem] leading-[1rem]
+                    className="text-black text-[1rem] leading-[1rem]
                 
                 "
                   >
                     {item.name}
                   </span>
-                  <span>{item.subName}</span>
+                  <span className="text-black text-[1rem] leading-[1rem]">
+                    {item.subName}
+                  </span>
                 </div>
               </div>
             );

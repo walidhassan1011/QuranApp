@@ -12,7 +12,7 @@ export const StoreProvider = ({ children }) => {
     start: 1,
     end: 1,
   });
-  const [imgHtml, setImgHtml] = useState();
+  const [imgHtml, setImgHtml] = useState(" ");
 
   const [translation, setTranslation] = useState("English");
   const [useTranslation, setUseTranslation] = useState(false);
@@ -123,6 +123,9 @@ export const StoreProvider = ({ children }) => {
     };
     fetchSurahBorder();
   }, [colors.assets]);
+
+  /************************************************* */
+
   /************************************************* */
   useEffect(() => {
     localStorage.setItem("lang", translation);
@@ -142,6 +145,7 @@ export const StoreProvider = ({ children }) => {
       if (id == undefined) {
         return;
       }
+      setGenerated(true);
       const res = await API.get("/generate", {
         params: {
           surah: id,
@@ -157,6 +161,9 @@ export const StoreProvider = ({ children }) => {
 
         responseType: "blob",
       });
+
+      // react code
+
       const data = URL.createObjectURL(res.data);
       let img = new Image();
       img.src = data;
@@ -168,11 +175,17 @@ export const StoreProvider = ({ children }) => {
         ctx.drawImage(img, 0, 0);
         let dataURL = canvas.toDataURL("image/png");
         setSurahImage(dataURL);
-        setGenerated(true);
       };
     } catch (error) {
       console.log(error);
     }
+  };
+  /***************************************************************** */
+  const downloadImage = () => {
+    const a = document.createElement("a");
+    a.href = surahImage;
+    a.download = `${surahName} ${ayaNumber.start}-${ayaNumber.end}.png`;
+    a.click();
   };
   /********************************************** */
   return (
@@ -192,6 +205,7 @@ export const StoreProvider = ({ children }) => {
         ayatTranslation,
         useTranslation,
         setUseTranslation,
+        downloadImage,
         imgHtml,
         setImgHtml,
         fetchSurahImage,

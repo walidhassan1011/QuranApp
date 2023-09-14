@@ -115,15 +115,13 @@ const Surah = () => {
                 textAlign: "center",
                 display: "flex",
                 padding: "20px",
-                justifyContent: "center",
+                justifyContent: "start",
                 alignItems: "center",
                 flexDirection: "column",
               }}
               wrapperStyle={{
                 width: "100%",
                 height: "100%",
-
-                display: "flex",
               }}
             >
               {

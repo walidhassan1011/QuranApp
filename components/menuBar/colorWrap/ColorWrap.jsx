@@ -1,7 +1,7 @@
 import React from "react";
 import ColorWheel from "./ColorWheel";
 
-const ColorWrap = () => {
+const ColorWrap = ({ color }) => {
   return (
     <div
       className="flex justify-between items-center
@@ -10,10 +10,10 @@ flex-col
 py-5
 rounded-[10px]
     
-bg-[#FFFFFF]
+
 "
     >
-      <ColorWheel />
+      <ColorWheel color={color} />
     </div>
   );
 };

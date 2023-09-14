@@ -13,11 +13,20 @@ import Customize from "./Customize";
 import { useStore } from "@/context/Store";
 import { lang } from "@/constants/lang";
 import translationlang from "@/constants/translation";
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 /********************************** */
 const colorTitle = ["color", "background", "assets"];
 const SideBar = () => {
   const [show, setShow] = useState(true);
-  const { translation } = useStore();
+  const {
+    translation,
+    setSurahName,
+    setAyaNumber,
+    setColors,
+    surahName,
+    ayaNumber,
+    colors,
+  } = useStore();
   const [open, setOpen] = useState(false);
 
   const toggle = (index) => {
@@ -95,14 +104,25 @@ const SideBar = () => {
         sm:hidden
         "
                 >
-                  <BiRightArrowAlt
-                    className="text-[#000000]
+                  {translation === "English" ? (
+                    <AiOutlineArrowLeft
+                      className="text-[#000000]
           font-bold
           text-2xl
           cursor-pointer
           "
-                    onClick={() => setShow(false)}
-                  />
+                      onClick={() => setShow(false)}
+                    />
+                  ) : (
+                    <AiOutlineArrowRight
+                      className="text-[#000000]
+            font-bold
+            text-2xl
+            cursor-pointer
+            "
+                      onClick={() => setShow(false)}
+                    />
+                  )}
                 </div>
                 <h1
                   className="text-[#000000]
@@ -168,15 +188,41 @@ const SideBar = () => {
           
         `}
           >
-            <BiRightArrowAlt
-              className="text-[#000000] 
+            {translation === "English" ? (
+              <AiOutlineArrowRight
+                className="text-[#000000] 
           font-bold 
           text-2xl
           cursor-pointer
 
           "
-              onClick={() => setShow(true)}
-            />
+                onClick={() => {
+                  // state the state to the previous state
+                  setAyaNumber((prev) => prev);
+                  setSurahName((prev) => prev);
+                  setColors((prev) => prev);
+
+                  setShow(true);
+                }}
+              />
+            ) : (
+              <AiOutlineArrowLeft
+                className="text-[#000000] 
+          font-bold 
+          text-2xl
+          cursor-pointer
+
+          "
+                onClick={() => {
+                  // state the state to the previous state
+                  setAyaNumber((prev) => prev);
+                  setSurahName((prev) => prev);
+                  setColors((prev) => prev);
+
+                  setShow(true);
+                }}
+              />
+            )}
           </motion.div>
         )}
       </AnimatePresence>
