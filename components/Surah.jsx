@@ -98,8 +98,8 @@ const Surah = () => {
     >
       <TransformWrapper
         defaultScale={0.5}
-        maxScale={1}
-        minScale={0.5}
+        maxScale={5}
+        minScale={0.1}
         zoomAnimation={true}
         defaultPositionX={100}
         defaultPositionY={100}
@@ -121,7 +121,7 @@ const Surah = () => {
               }}
               wrapperStyle={{
                 width: "100%",
-                height: "100%",
+                height: "120vh",
               }}
             >
               {
