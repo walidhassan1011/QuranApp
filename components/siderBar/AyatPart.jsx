@@ -7,7 +7,8 @@ import React, { useState } from "react";
 import DropDown from "../dropdown/DropDown";
 import DropDownItem from "../dropdown/DropDownItem";
 import translationlang from "@/constants/translation";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const AyatPart = () => {
   const { ayaNumber, setAyaNumber, surahName, setSurahName, translation } =
     useStore();
@@ -44,6 +45,9 @@ const AyatPart = () => {
           <DropDown
             onchange={(e) => {
               setAyaNumber({ ...ayaNumber, start: e.target.value });
+              if (e.target.value > ayaNumber.end) {
+                toast.error("Start number must be less than end number");
+              }
             }}
             style={
               "bg-[#F5F5F5] rounded-[5px]  p-1 flex justify-between  items-center w-[85px] border-[0px] cursor-pointer px-4 mr-2"
@@ -58,6 +62,9 @@ const AyatPart = () => {
           <DropDown
             onchange={(e) => {
               setAyaNumber({ ...ayaNumber, end: e.target.value });
+              if (ayaNumber.start > ayaNumber.end) {
+                toast.error("Start number must be less than end number");
+              }
             }}
             style={
               "bg-[#F5F5F5] rounded-[5px]  p-1 flex justify-between  items-center w-[85px] border-[0px] cursor-pointer px-4"
@@ -75,6 +82,18 @@ const AyatPart = () => {
           </DropDown>
         </div>
       </div>
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 };

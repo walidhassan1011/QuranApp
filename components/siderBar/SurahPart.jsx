@@ -42,10 +42,6 @@ const SurahPart = () => {
           });
 
           setSurahName(surahName.surahName);
-          setAyaNumber({
-            start: 1,
-            end: 1,
-          });
         }}
         style={
           "bg-[#F5F5F5] rounded-[5px]  p-2 flejustify-between  items-center w-[175px] border-[0px] cursor-pointer px-4"

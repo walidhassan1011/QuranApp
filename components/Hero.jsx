@@ -5,6 +5,8 @@ import SideBar from "./siderBar/SideBar";
 import { useStore } from "@/context/Store";
 import { Lightbox } from "react-modal-image";
 import ModelPage from "./ModelPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Hero = () => {
   const { generated, setGenerated, surahImage, setSurahImage } = useStore();
 
@@ -12,7 +14,7 @@ const Hero = () => {
     <div
       className="flex justify-around items-start
      min-h-[88.5vh]
-      px-[15px]
+      
     bg-[#F5F5F5]
     sm:px-2
     sm:flex-col

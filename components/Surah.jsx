@@ -90,7 +90,10 @@ const Surah = () => {
 
   return (
     <motion.div
-      className="flex flex-col justify-center items-center
+      className="
+    flex 
+    justify-center
+    items-center
     w-[100%]
     sm:mt-[50px]
     
@@ -98,8 +101,8 @@ const Surah = () => {
     >
       <TransformWrapper
         defaultScale={0.5}
-        maxScale={1}
-        minScale={0.5}
+        maxScale={5}
+        minScale={0.1}
         zoomAnimation={true}
         defaultPositionX={100}
         defaultPositionY={100}
@@ -114,14 +117,14 @@ const Surah = () => {
 
                 textAlign: "center",
                 display: "flex",
-                padding: "20px",
+
                 justifyContent: "start",
-                alignItems: "center",
+                alignItems: "end",
                 flexDirection: "column",
               }}
               wrapperStyle={{
                 width: "100%",
-                height: "100%",
+                height: "120vh",
               }}
             >
               {
