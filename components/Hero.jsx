@@ -12,9 +12,9 @@ const Hero = () => {
 
   return (
     <div
-      className="flex justify-around items-start
+      className="flex justify-center items-center
      min-h-[88.5vh]
-      
+    
     bg-[#F5F5F5]
     sm:px-2
     sm:flex-col

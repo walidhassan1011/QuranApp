@@ -95,6 +95,7 @@ const Surah = () => {
     justify-center
     items-center
     w-[100%]
+    
     sm:mt-[50px]
     
    "
@@ -118,13 +119,14 @@ const Surah = () => {
                 textAlign: "center",
                 display: "flex",
 
-                justifyContent: "start",
+                justifyContent: "center",
                 alignItems: "end",
+                padding: "30px 30px 80px 30px",
                 flexDirection: "column",
               }}
               wrapperStyle={{
                 width: "100%",
-                height: "120vh",
+                height: "88.6vh",
               }}
             >
               {
