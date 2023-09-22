@@ -45,6 +45,7 @@ const AyatPart = () => {
           <DropDown
             onchange={(e) => {
               setAyaNumber({ ...ayaNumber, start: e.target.value });
+
               if (e.target.value > ayaNumber.end) {
                 toast.error("Start number must be less than end number");
               }
@@ -62,6 +63,7 @@ const AyatPart = () => {
           <DropDown
             onchange={(e) => {
               setAyaNumber({ ...ayaNumber, end: e.target.value });
+
               if (ayaNumber.start > e.target.value) {
                 toast.error("Start number must be less than end number");
               }
