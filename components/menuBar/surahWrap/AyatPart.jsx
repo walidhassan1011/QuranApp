@@ -95,7 +95,7 @@ const AyatPart = () => {
           pauseOnFocusLoss
           draggable
           pauseOnHover
-          style={{ zIndex: 999999 }}
+          style={{ zIndex: 999999, marginTop: "80px" }}
         />
       </div>
     </>
