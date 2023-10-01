@@ -50,8 +50,7 @@ const SideBar = () => {
    fixed
     top-[10%]
     ${translation === "English" ? "left-[0%]" : "right-[0%]"}
-  
-   
+          xl:top-[13%]
    sm:hidden
    
           z-50

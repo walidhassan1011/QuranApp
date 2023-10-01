@@ -7,8 +7,16 @@ import { Lightbox } from "react-modal-image";
 import ModelPage from "./ModelPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ErrorMess from "./toastMessage/ErrorMess";
 const Hero = () => {
-  const { generated, setGenerated, surahImage, setSurahImage } = useStore();
+  const {
+    generated,
+    setGenerated,
+    surahImage,
+    setSurahImage,
+    alert,
+    setAlert,
+  } = useStore();
 
   return (
     <div
@@ -35,6 +43,7 @@ const Hero = () => {
 
         <ModelPage />
       )}
+      {alert && <ErrorMess />}
     </div>
   );
 };

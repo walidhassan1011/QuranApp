@@ -193,6 +193,8 @@ export const StoreProvider = ({ children }) => {
       value={{
         surahName,
         setSurahName,
+        alert,
+        setAlert,
         ayaNumber,
         setAyaNumber,
         colors,

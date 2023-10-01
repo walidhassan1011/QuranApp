@@ -10,8 +10,15 @@ import translationlang from "@/constants/translation";
 import { ToastContainer, toast } from "react-toastify";
 
 const AyatPart = () => {
-  const { ayaNumber, setAyaNumber, surahName, setSurahName, translation } =
-    useStore();
+  const {
+    ayaNumber,
+    setAyaNumber,
+    surahName,
+    setSurahName,
+    translation,
+    alert,
+    setAlert,
+  } = useStore();
   const [hightRange, setHightRange] = useState(false);
 
   const surah = versesInArabic?.find((item) => item?.surahName === surahName);
@@ -49,7 +56,11 @@ const AyatPart = () => {
             onchange={(e) => {
               setAyaNumber({ ...ayaNumber, start: e.target.value });
               if (e.target.value > ayaNumber.end) {
-                toast.error("Start number must be less than end number");
+                setAlert(true);
+                // return satet to default value after 5 seconds
+                setTimeout(() => {
+                  setAlert(false);
+                }, 2000);
               }
             }}
             style={
@@ -66,7 +77,11 @@ const AyatPart = () => {
             onchange={(e) => {
               setAyaNumber({ ...ayaNumber, end: e.target.value });
               if (ayaNumber.start > e.target.value) {
-                toast.error("Start number must be less than end number");
+                setAlert(true);
+                // return satet to default value after 5 seconds
+                setTimeout(() => {
+                  setAlert(false);
+                }, 2000);
               }
             }}
             style={
@@ -84,7 +99,7 @@ const AyatPart = () => {
             )}
           </DropDown>
         </div>
-        <ToastContainer
+        {/* <ToastContainer
           position="top-right"
           autoClose={5000}
           hideProgressBar={false}
@@ -95,7 +110,7 @@ const AyatPart = () => {
           draggable
           pauseOnHover
           style={{ zIndex: 999999, marginTop: "80px" }}
-        />
+        /> */}
       </div>
     </>
   );

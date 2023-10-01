@@ -9,9 +9,17 @@ import DropDownItem from "../dropdown/DropDownItem";
 import translationlang from "@/constants/translation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ErrorMess from "../toastMessage/ErrorMess";
 const AyatPart = () => {
-  const { ayaNumber, setAyaNumber, surahName, setSurahName, translation } =
-    useStore();
+  const {
+    ayaNumber,
+    setAyaNumber,
+    surahName,
+    setSurahName,
+    translation,
+    alert,
+    setAlert,
+  } = useStore();
   const [hightRange, setHightRange] = useState(false);
 
   const surah = versesInArabic?.find((item) => item?.surahName === surahName);
@@ -45,9 +53,21 @@ const AyatPart = () => {
           <DropDown
             onchange={(e) => {
               setAyaNumber({ ...ayaNumber, start: e.target.value });
+              if (e.target.value < ayaNumber.end && alert === true) {
+                setAlert(false);
+                return;
+              }
 
-              if (e.target.value > ayaNumber.end) {
-                toast.error("Start number must be less than end number");
+              if (e.target.value > ayaNumber.end && alert === false) {
+                setAlert(true);
+                return;
+                // return satet to default value after 5 seconds
+              }
+              if (e.target.value > ayaNumber.end && alert === true) {
+                setAlert(true);
+                return;
+              } else {
+                setAlert(false);
               }
             }}
             style={
@@ -63,9 +83,21 @@ const AyatPart = () => {
           <DropDown
             onchange={(e) => {
               setAyaNumber({ ...ayaNumber, end: e.target.value });
+              if (e.target.value > ayaNumber.start && alert === true) {
+                setAlert(false);
+                return;
+              }
 
-              if (ayaNumber.start > e.target.value) {
-                toast.error("Start number must be less than end number");
+              if (e.target.value < ayaNumber.start && alert === false) {
+                setAlert(true);
+                return;
+                // return satet to default value after 5 seconds
+              }
+              if (e.target.value < ayaNumber.start && alert === true) {
+                setAlert(true);
+                return;
+              } else {
+                setAlert(false);
               }
             }}
             style={
@@ -85,7 +117,7 @@ const AyatPart = () => {
         </div>
       </div>
 
-      <ToastContainer
+      {/* <ToastContainer
         position="bottom-right"
         autoClose={5000}
         hideProgressBar={false}
@@ -95,7 +127,7 @@ const AyatPart = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-      />
+      /> */}
     </>
   );
 };
