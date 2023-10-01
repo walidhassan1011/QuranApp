@@ -55,12 +55,20 @@ const AyatPart = () => {
           <DropDown
             onchange={(e) => {
               setAyaNumber({ ...ayaNumber, start: e.target.value });
-              if (e.target.value > ayaNumber.end) {
+              if (e.target.value < ayaNumber.end && alert === true) {
+                setAlert(false);
+                return;
+              }
+
+              if (e.target.value > ayaNumber.end && alert === false) {
                 setAlert(true);
-                // return satet to default value after 5 seconds
-                setTimeout(() => {
-                  setAlert(false);
-                }, 2000);
+                return;
+              }
+              if (e.target.value > ayaNumber.end && alert === true) {
+                setAlert(true);
+                return;
+              } else {
+                setAlert(false);
               }
             }}
             style={
@@ -76,12 +84,20 @@ const AyatPart = () => {
           <DropDown
             onchange={(e) => {
               setAyaNumber({ ...ayaNumber, end: e.target.value });
-              if (ayaNumber.start > e.target.value) {
+              if (e.target.value > ayaNumber.start && alert === true) {
+                setAlert(false);
+                return;
+              }
+
+              if (e.target.value < ayaNumber.start && alert === false) {
                 setAlert(true);
-                // return satet to default value after 5 seconds
-                setTimeout(() => {
-                  setAlert(false);
-                }, 2000);
+                return;
+              }
+              if (e.target.value < ayaNumber.start && alert === true) {
+                setAlert(true);
+                return;
+              } else {
+                setAlert(false);
               }
             }}
             style={

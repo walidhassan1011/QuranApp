@@ -61,7 +61,6 @@ const AyatPart = () => {
               if (e.target.value > ayaNumber.end && alert === false) {
                 setAlert(true);
                 return;
-                // return satet to default value after 5 seconds
               }
               if (e.target.value > ayaNumber.end && alert === true) {
                 setAlert(true);
@@ -91,7 +90,6 @@ const AyatPart = () => {
               if (e.target.value < ayaNumber.start && alert === false) {
                 setAlert(true);
                 return;
-                // return satet to default value after 5 seconds
               }
               if (e.target.value < ayaNumber.start && alert === true) {
                 setAlert(true);
