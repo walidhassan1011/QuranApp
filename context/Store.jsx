@@ -7,7 +7,8 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 export const StoreContext = createContext();
 
 export const StoreProvider = ({ children }) => {
-  const [surahName, setSurahName] = useState("الفاتحة");
+  const [surahName, setSurahName] = useState("الفاتحة"); // I don't know if this is still needed anywhere in the code
+  const [surahId, setSurahId] = useState(0)
   const [ayaNumber, setAyaNumber] = useState({
     start: 1,
     end: 1,
@@ -193,6 +194,8 @@ export const StoreProvider = ({ children }) => {
       value={{
         surahName,
         setSurahName,
+        surahId,
+        setSurahId,
         alert,
         setAlert,
         ayaNumber,
