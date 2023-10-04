@@ -3,7 +3,10 @@ import React from "react";
 const DropDownItem = ({ list, children, onclick, value }) => {
   return (
     <>
-      <option onChange={onclick}>{children}</option>;
+      <option onChange={onclick} value={value}>
+        {children}
+      </option>
+      ;
     </>
   );
 };

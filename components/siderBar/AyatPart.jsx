@@ -20,7 +20,6 @@ const AyatPart = () => {
     alert,
     setAlert,
   } = useStore();
-  const [hightRange, setHightRange] = useState(false);
 
   const surah = versesInArabic?.find((item) => item?.surahName === surahName);
 
@@ -75,7 +74,11 @@ const AyatPart = () => {
           >
             {Array?.from(Array(surah.toAya - surah.fromAya + 1)?.keys()).map(
               (item, index) => {
-                return <DropDownItem key={index}>{item + 1}</DropDownItem>;
+                return (
+                  <DropDownItem key={index} value={item + 1}>
+                    {item + 1}
+                  </DropDownItem>
+                );
               }
             )}
           </DropDown>
@@ -105,7 +108,7 @@ const AyatPart = () => {
             {Array?.from(Array(surah?.toAya - surah?.fromAya + 1)?.keys()).map(
               (item, index) => {
                 return (
-                  <DropDownItem key={index}>
+                  <DropDownItem value={surah?.fromAya + item} key={index}>
                     {surah?.fromAya + item}
                   </DropDownItem>
                 );

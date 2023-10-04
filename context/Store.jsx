@@ -13,7 +13,7 @@ export const StoreProvider = ({ children }) => {
     end: 1,
   });
   const [imgHtml, setImgHtml] = useState(" ");
-
+  
   const [translation, setTranslation] = useState("English");
   const [useTranslation, setUseTranslation] = useState(false);
   const [ayatTranslation, setAyatTranslation] = useState([]);
