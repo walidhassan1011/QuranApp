@@ -2,14 +2,12 @@
 
 import { versesInArabic } from "@/constants/ayatNumbers";
 import { useStore } from "@/context/Store";
-import { Dropdown } from "flowbite-react";
+
 import React, { useState } from "react";
 import DropDown from "../dropdown/DropDown";
 import DropDownItem from "../dropdown/DropDownItem";
 import translationlang from "@/constants/translation";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import ErrorMess from "../toastMessage/ErrorMess";
+
 const AyatPart = () => {
   const {
     ayaNumber,
@@ -51,7 +49,7 @@ const AyatPart = () => {
         >
           <DropDown
             onchange={(e) => {
-              setAyaNumber({ ...ayaNumber, start: e.target.value });
+              setAyaNumber({ ...ayaNumber, start: parseInt(e.target.value) });
               if (e.target.value < ayaNumber.end && alert === true) {
                 setAlert(false);
                 return;
@@ -71,11 +69,12 @@ const AyatPart = () => {
             style={
               "bg-[#F5F5F5] rounded-[5px]  p-1 flex justify-between  items-center w-[85px] border-[0px] cursor-pointer px-4 mr-2"
             }
+            selection={ayaNumber.start}
           >
             {Array?.from(Array(surah.toAya - surah.fromAya + 1)?.keys()).map(
               (item, index) => {
                 return (
-                  <DropDownItem key={index} value={item + 1}>
+                  <DropDownItem value={index + 1} key={index}>
                     {item + 1}
                   </DropDownItem>
                 );
@@ -84,7 +83,7 @@ const AyatPart = () => {
           </DropDown>
           <DropDown
             onchange={(e) => {
-              setAyaNumber({ ...ayaNumber, end: e.target.value });
+              setAyaNumber({ ...ayaNumber, end: parseInt(e.target.value) });
               if (e.target.value > ayaNumber.start && alert === true) {
                 setAlert(false);
                 return;
@@ -104,12 +103,13 @@ const AyatPart = () => {
             style={
               "bg-[#F5F5F5] rounded-[5px]  p-1 flex justify-between  items-center w-[85px] border-[0px] cursor-pointer px-4"
             }
+            selection={ayaNumber.end}
           >
-            {Array?.from(Array(surah?.toAya - surah?.fromAya + 1)?.keys()).map(
+            {Array?.from(Array(surah.toAya - surah.fromAya + 1)?.keys()).map(
               (item, index) => {
                 return (
-                  <DropDownItem value={surah?.fromAya + item} key={index}>
-                    {surah?.fromAya + item}
+                  <DropDownItem value={index + 1} key={index}>
+                    {item + 1}
                   </DropDownItem>
                 );
               }
@@ -117,18 +117,6 @@ const AyatPart = () => {
           </DropDown>
         </div>
       </div>
-
-      {/* <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      /> */}
     </>
   );
 };

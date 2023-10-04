@@ -3,7 +3,7 @@ import { versesInArabic } from "@/constants/ayatNumbers";
 
 import { useStore } from "@/context/Store";
 
-import React from "react";
+import React, { useState } from "react";
 
 import DropDown from "../dropdown/DropDown";
 import DropDownItem from "../dropdown/DropDownItem";
@@ -11,7 +11,14 @@ import translationlang from "@/constants/translation";
 import SurahFullName from "@/constants/SurahFullNames";
 
 const SurahPart = () => {
-  const { surahName, setSurahName, translation, setAyaNumber } = useStore();
+  const {
+    surahId,
+    setSurahId,
+    surahName,
+    setSurahName,
+    translation,
+    setAyaNumber,
+  } = useStore();
 
   return (
     <div
@@ -32,23 +39,24 @@ const SurahPart = () => {
       </span>
       <DropDown
         onchange={(e) => {
-          // setSurahName(e.target.value);
-          const surahId = parseInt(e.target.value.split(" ")[0]);
+          const localsurahId = e.target.value;
 
-          const surahName = versesInArabic.find((item) => {
-            if (item.id === surahId) {
-              return item.surahName;
-            }
-          });
+          const surahName = versesInArabic[localsurahId].surahName;
 
-          setSurahName(surahName.surahName);
+          setSurahName(surahName);
+          setSurahId(localsurahId);
         }}
         style={
           "bg-[#F5F5F5] rounded-[5px]  p-2 flejustify-between  items-center w-[175px] border-[0px] cursor-pointer px-4"
         }
+        selection={surahId}
       >
         {SurahFullName?.map((item, index) => {
-          return <DropDownItem key={index}>{item}</DropDownItem>;
+          return (
+            <DropDownItem key={index} value={index}>
+              {item}
+            </DropDownItem>
+          );
         })}
       </DropDown>
     </div>

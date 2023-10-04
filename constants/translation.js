@@ -14,6 +14,7 @@ const translationlang = {
     english: "English",
     arabic: "Arabic",
     download: "Download",
+    errorMessage: "Start Aya must be less than End Aya",
   },
   ar: {
     surah: "سورة",
@@ -30,6 +31,7 @@ const translationlang = {
     english: "الإنجليزية",
     arabic: "عربى",
     download: "تحميل",
+    errorMessage: "يجب أن يكون بداية الآية أقل من نهاية الآية",
   },
 };
 
