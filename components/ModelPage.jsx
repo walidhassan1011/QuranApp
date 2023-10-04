@@ -62,7 +62,7 @@ const ModelPage = () => {
           "
           >
             <button
-              className="bg-[black]
+              className={`bg-[black]
         rounded-[10px]
         px-5
         py-2
@@ -75,9 +75,9 @@ const ModelPage = () => {
         sm:py-2
         
         sm:rounded-[5px]
-        
+        ${surahImage?.length > 0 ? "visible" : "invisible"}
          
-        "
+  `}
               onClick={() => downloadImage()}
             >
               <FiDownload

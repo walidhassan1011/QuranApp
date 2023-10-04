@@ -62,8 +62,6 @@ const Surah = () => {
 
   useEffect(() => {
     setWidth(elementref.current.offsetWidth);
-
-    console.log(elementref.current.offsetWidth);
   }, [size.width]);
 
   // find surah number from surah name

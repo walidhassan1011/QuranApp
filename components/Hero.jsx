@@ -16,6 +16,8 @@ const Hero = () => {
     setSurahImage,
     alert,
     setAlert,
+    error,
+    setError,
   } = useStore();
 
   return (
@@ -43,7 +45,11 @@ const Hero = () => {
 
         <ModelPage />
       )}
-      {alert && <ErrorMess />}
+      {alert ? (
+        <ErrorMess type={"startLessThanEnd"} />
+      ) : error ? (
+        <ErrorMess type={"somethingWentWrong"} />
+      ) : null}
     </div>
   );
 };

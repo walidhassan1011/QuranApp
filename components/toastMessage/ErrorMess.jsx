@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { BiErrorCircle } from "react-icons/bi";
 import { useStore } from "@/context/Store";
 import translationlang from "@/constants/translation";
-const ErrorMess = () => {
+const ErrorMess = ({ type }) => {
   const { translation } = useStore();
   return (
     <AnimatePresence>
@@ -67,8 +67,8 @@ const ErrorMess = () => {
         "
           >
             {translation === "English"
-              ? translationlang.en.errorMessage
-              : translationlang.ar.errorMessage}
+              ? translationlang.en.errorMessage[type]
+              : translationlang.ar.errorMessage[type]}
           </span>
         </div>
       </motion.div>
