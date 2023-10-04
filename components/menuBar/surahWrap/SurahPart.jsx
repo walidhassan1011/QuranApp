@@ -12,6 +12,7 @@ const SurahPart = () => {
     surahName,
     setSurahName,
     translation,
+    ayaNumber,
     setAyaNumber,
   } = useStore();
   return (
@@ -38,10 +39,16 @@ gap-[2rem]
         onchange={(e) => {
           const localsurahId = e.target.value;
 
-          const surahName = versesInArabic[localsurahId].surahName;
+          const surah = versesInArabic[localsurahId];
 
-          setSurahName(surahName);
+          setSurahName(surah.surahName);
           setSurahId(localsurahId);
+          if(surah.toAya < ayaNumber.start || surah.toAya < ayaNumber.end)
+          {
+            setAyaNumber({start:1,end:1})
+
+          }
+          
         }}
         style={
           "bg-[#F5F5F5] rounded-[5px]  p-2 flejustify-between  items-center w-[100%] border-[0px] cursor-pointer px-4"
