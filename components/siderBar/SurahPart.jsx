@@ -42,16 +42,13 @@ const SurahPart = () => {
         onchange={(e) => {
           const localsurahId = e.target.value;
 
-          const surah= versesInArabic[localsurahId];
+          const surah = versesInArabic[localsurahId];
 
           setSurahName(surah.surahName);
           setSurahId(localsurahId);
-          if(surah.toAya < ayaNumber.start || surah.toAya < ayaNumber.end)
-          {
-            setAyaNumber({start:1,end:1})
-
+          if (surah.toAya < ayaNumber.start || surah.toAya < ayaNumber.end) {
+            setAyaNumber({ start: 1, end: 1 });
           }
-          
         }}
         style={
           "bg-[#F5F5F5] rounded-[5px]  p-2 flejustify-between  items-center w-[175px] border-[0px] cursor-pointer px-4"

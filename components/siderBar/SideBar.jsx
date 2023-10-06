@@ -142,7 +142,7 @@ const SideBar = () => {
                 </h1>
                 <TextSize />
 
-                {colorTitle.map((title, index) => {
+                {colorTitle?.map((title, index) => {
                   return (
                     <>
                       <Customize
@@ -213,11 +213,6 @@ const SideBar = () => {
 
           "
                 onClick={() => {
-                  // state the state to the previous state
-                  setAyaNumber((prev) => prev);
-                  setSurahName((prev) => prev);
-                  setColors((prev) => prev);
-
                   setShow(true);
                 }}
               />

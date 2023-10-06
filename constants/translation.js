@@ -29,7 +29,7 @@ const translationlang = {
     color: "اللون",
     background: "الخلفية",
     assets: "المحتوى",
-    effects: "التأثيرات",
+    effects: "تصميم",
     generate: "توليد",
     english: "الإنجليزية",
     arabic: "عربى",
