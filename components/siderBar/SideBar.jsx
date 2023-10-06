@@ -41,24 +41,22 @@ const SideBar = () => {
     <>
       <AnimatePresence>
         {show && (
-          <div
-            className="
-              sm:hidden
-            "
-          >
+          <div className="sm:hidden">
             <motion.div
-              className="flex  justify-between items-center
+              className={`flex  justify-between items-center
     min-h-[88vh]
     w-[302px]
-   relative
-  
-   
+    
+   fixed
+    top-[10%]
+    ${translation === "English" ? "left-[0%]" : "right-[0%]"}
+          xl:top-[13%]
    sm:hidden
    
           z-50
     
     px-2
-    "
+        `}
               initial={{
                 x: `
               ${translation === "English" ? "-100%" : "100%"}
@@ -144,7 +142,7 @@ const SideBar = () => {
                 </h1>
                 <TextSize />
 
-                {colorTitle.map((title, index) => {
+                {colorTitle?.map((title, index) => {
                   return (
                     <>
                       <Customize
@@ -178,8 +176,9 @@ const SideBar = () => {
             className={`flex justify-end items-center 
           bg-white
           p-2
-        absolute
+        fixed
         top-[50%]
+        
         ${translation === "English" ? "left-[1%]" : "right-[1%]"}
         z-10
         
@@ -214,11 +213,6 @@ const SideBar = () => {
 
           "
                 onClick={() => {
-                  // state the state to the previous state
-                  setAyaNumber((prev) => prev);
-                  setSurahName((prev) => prev);
-                  setColors((prev) => prev);
-
                   setShow(true);
                 }}
               />

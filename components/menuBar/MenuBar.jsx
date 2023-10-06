@@ -165,6 +165,7 @@ const MenuBar = () => {
             return (
               open === item.id && (
                 <motion.div
+                key={index}
                   className=" justify-between items-center 
       flex-col
       w-[100%]

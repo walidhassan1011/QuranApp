@@ -5,7 +5,7 @@ import { BiSolidRightArrow } from "react-icons/bi";
 import Image from "next/image";
 import { AiOutlineClose } from "react-icons/ai";
 import SpinnerLoader from "./SpinnerLoader";
-
+import { FiDownload } from "react-icons/fi";
 const ModelPage = () => {
   const {
     fetchSurahImage,
@@ -62,34 +62,32 @@ const ModelPage = () => {
           "
           >
             <button
-              className="bg-[black]
+              className={`bg-[black]
         rounded-[10px]
         px-5
         py-2
         text-white
         flex
+        text-center
         items-center
         justify-between
         sm:px-7
         sm:py-2
         
         sm:rounded-[5px]
-        
+        ${surahImage?.length > 0 ? "visible" : "invisible"}
          
-        "
+  `}
               onClick={() => downloadImage()}
             >
-              <BiSolidRightArrow
+              <FiDownload
                 className={`
-              ${translation === "English" ? "mr-2" : "ml-2"}
+              
               sm:m-0
+              text-2xl
+              font-bold
             `}
               />
-              <span className="">
-                {translation === "English"
-                  ? translationlang.en.download
-                  : translationlang.ar.download}
-              </span>
             </button>
             <AiOutlineClose
               className="text-black text-3xl cursor-pointer"

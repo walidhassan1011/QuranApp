@@ -7,13 +7,14 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 export const StoreContext = createContext();
 
 export const StoreProvider = ({ children }) => {
-  const [surahName, setSurahName] = useState("الفاتحة");
+  const [surahName, setSurahName] = useState("الفاتحة"); // I don't know if this is still needed anywhere in the code
+  const [surahId, setSurahId] = useState(0);
   const [ayaNumber, setAyaNumber] = useState({
     start: 1,
     end: 1,
   });
   const [imgHtml, setImgHtml] = useState(" ");
-
+  const [error, setError] = useState(false);
   const [translation, setTranslation] = useState("English");
   const [useTranslation, setUseTranslation] = useState(false);
   const [ayatTranslation, setAyatTranslation] = useState([]);
@@ -74,11 +75,6 @@ export const StoreProvider = ({ children }) => {
           return;
         }
 
-        // if (ayaNumber.start > ayaNumber.end) {
-        //   setAyaNumber({ start: 1, end: 1 });
-        //   console.log("start is greater than end");
-        //   return;
-        // }
         if (ayaNumber.start === null || ayaNumber.end === null) {
           return;
         }
@@ -98,8 +94,9 @@ export const StoreProvider = ({ children }) => {
         const data = res.data;
 
         setAyat(data);
+        setError(false);
       } catch (error) {
-        console.log(error);
+        setError(true);
       }
     };
     fetchAayat();
@@ -117,8 +114,9 @@ export const StoreProvider = ({ children }) => {
         const data = URL.createObjectURL(res.data);
 
         setSurahBorder(data);
+        setError(false);
       } catch (error) {
-        console.log(error);
+        setError(true);
       }
     };
     fetchSurahBorder();
@@ -176,8 +174,9 @@ export const StoreProvider = ({ children }) => {
         let dataURL = canvas.toDataURL("image/png");
         setSurahImage(dataURL);
       };
+      setError(false);
     } catch (error) {
-      console.log(error);
+      setError(true);
     }
   };
   /***************************************************************** */
@@ -193,9 +192,15 @@ export const StoreProvider = ({ children }) => {
       value={{
         surahName,
         setSurahName,
+        surahId,
+        setSurahId,
+        alert,
+        setAlert,
         ayaNumber,
         setAyaNumber,
         colors,
+        error,
+        setError,
         setColors,
         textSize,
         setTextSize,

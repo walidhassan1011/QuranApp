@@ -1,8 +1,8 @@
 import React from "react";
 
-const DropDown = ({ children, onchange, style }) => {
+const DropDown = ({ children, onchange, style, selection }) => {
   return (
-    <select className={style} onChange={onchange}>
+    <select value={selection} className={style} onChange={onchange}>
       {children}
     </select>
   );

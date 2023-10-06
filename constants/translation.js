@@ -14,6 +14,10 @@ const translationlang = {
     english: "English",
     arabic: "Arabic",
     download: "Download",
+    errorMessage: {
+      startLessThanEnd: "Start verse must be less than end verse",
+      somethingWentWrong: "Something went wrong",
+    },
   },
   ar: {
     surah: "سورة",
@@ -25,11 +29,15 @@ const translationlang = {
     color: "اللون",
     background: "الخلفية",
     assets: "المحتوى",
-    effects: "التأثيرات",
+    effects: "تصميم",
     generate: "توليد",
     english: "الإنجليزية",
     arabic: "عربى",
     download: "تحميل",
+    errorMessage: {
+      startLessThanEnd: "يجب أن يكون رقم الآية الأولى أقل من رقم الآية الأخيرة",
+      somethingWentWrong: "حدث خطأ ما",
+    },
   },
 };
 

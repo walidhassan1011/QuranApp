@@ -6,7 +6,15 @@ import { versesInArabic } from "@/constants/ayatNumbers";
 import { useStore } from "@/context/Store";
 import SurahFullName from "@/constants/SurahFullNames";
 const SurahPart = () => {
-  const { surahName, setSurahName, translation, setAyaNumber } = useStore();
+  const {
+    surahId,
+    setSurahId,
+    surahName,
+    setSurahName,
+    translation,
+    ayaNumber,
+    setAyaNumber,
+  } = useStore();
   return (
     <div
       className="flex justify-between items-center
@@ -29,26 +37,30 @@ gap-[2rem]
       </span>
       <DropDown
         onchange={(e) => {
-          const surahId = parseInt(e.target.value.split(" ")[0]);
+          const localsurahId = e.target.value;
 
-          const surahName = versesInArabic.find((item) => {
-            if (item.id === surahId) {
-              return item.surahName;
-            }
-          });
+          const surah = versesInArabic[localsurahId];
 
-          setSurahName(surahName.surahName);
-          setAyaNumber({
-            start: 1,
-            end: 1,
-          });
+          setSurahName(surah.surahName);
+          setSurahId(localsurahId);
+          if(surah.toAya < ayaNumber.start || surah.toAya < ayaNumber.end)
+          {
+            setAyaNumber({start:1,end:1})
+
+          }
+          
         }}
         style={
           "bg-[#F5F5F5] rounded-[5px]  p-2 flejustify-between  items-center w-[100%] border-[0px] cursor-pointer px-4"
         }
+        selection={surahId}
       >
         {SurahFullName?.map((item, index) => {
-          return <DropDownItem key={index}>{item}</DropDownItem>;
+          return (
+            <DropDownItem value={index} key={index}>
+              {item}
+            </DropDownItem>
+          );
         })}
       </DropDown>
     </div>

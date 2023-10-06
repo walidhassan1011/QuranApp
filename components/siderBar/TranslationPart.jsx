@@ -7,9 +7,10 @@ import { lang } from "@/constants/lang";
 import DropDownItem from "../dropdown/DropDownItem";
 import { useStore } from "@/context/Store";
 import translationlang from "@/constants/translation";
-
+//FIXME: When we have more options for transaltions languages we will need to 
+//structure the dropdown the saem way we did for aya range or surah dropdown
 const TranslationPart = () => {
-  const { translation, setUseTranslation } = useStore();
+  const { translation, useTranslation,setUseTranslation } = useStore();
   return (
     <>
       <div
@@ -38,7 +39,8 @@ const TranslationPart = () => {
               type="checkbox"
               name=""
               id=""
-              onChange={(e) => setUseTranslation(e.target.checked)}
+              checked={useTranslation}
+              onChange={() => setUseTranslation(!useTranslation)}
               className={`
 
             ${translation === "English" ? "ml-1" : "mr-6"}

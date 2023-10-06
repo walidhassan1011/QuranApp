@@ -2,7 +2,6 @@
 
 import React from "react";
 
-import { Spinner } from "flowbite-react";
 const SpinnerLoader = () => {
   return (
     <>
@@ -13,7 +12,7 @@ const SpinnerLoader = () => {
           cy="25"
           r="20"
           fill="none"
-          stroke-width="5"
+          strokeWidth={"5px"}
         ></circle>
       </svg>
     </>

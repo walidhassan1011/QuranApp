@@ -7,7 +7,7 @@ import parse from "html-react-parser";
 
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
 import { versesInArabic } from "@/constants/ayatNumbers";
-import Loading from "@/app/Loading";
+import Loading from "@/app/(root)/Loading";
 const defaultAya = `
 بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِالٓمٓ ١  ذَٰلِكَ ٱلۡكِتَٰبُ لَا رَيۡبَۛ فِيهِۛ هُدٗى لِّلۡمُتَّقِينَ ٢  ٱلَّذِينَ يُؤۡمِنُونَ بِٱلۡغَيۡبِ وَيُقِيمُونَ ٱلصَّلَوٰةَ وَمِمَّا رَزَقۡنَٰهُمۡ يُنفِقُونَ ٣  وَٱلَّذِينَ يُؤۡمِنُونَ بِمَآ أُنزِلَ إِلَيۡكَ وَمَآ أُنزِلَ مِن قَبۡلِكَ وَبِٱلۡأٓخِرَةِ هُمۡ يُوقِنُونَ ٤  أُوْلَٰٓئِكَ عَلَىٰ هُدٗى مِّن رَّبِّهِمۡۖ وَأُوْلَٰٓئِكَ هُمُ ٱلۡمُفۡلِحُونَ ٥ إِنَّ ٱلَّذِينَ كَفَرُواْ سَوَآءٌ عَلَيۡهِمۡ ءَأَنذَرۡتَهُمۡ أَمۡ لَمۡ تُنذِرۡهُمۡ لَا يُؤۡمِنُونَ ٦  خَتَمَ ٱللَّهُ عَلَىٰ قُلُوبِهِمۡ وَعَلَىٰ سَمۡعِهِمۡۖ وَعَلَىٰٓ أَبۡصَٰرِهِمۡ غِشَٰوَةٞۖ وَلَهُمۡ عَذَابٌ عَظِيمٞ ٧ 
 `;
@@ -62,8 +62,6 @@ const Surah = () => {
 
   useEffect(() => {
     setWidth(elementref.current.offsetWidth);
-
-    console.log(elementref.current.offsetWidth);
   }, [size.width]);
 
   // find surah number from surah name
@@ -90,16 +88,20 @@ const Surah = () => {
 
   return (
     <motion.div
-      className="flex flex-col justify-center items-center
+      className="
+    flex 
+    justify-center
+    items-center
     w-[100%]
+    
     sm:mt-[50px]
     
    "
     >
       <TransformWrapper
         defaultScale={0.5}
-        maxScale={1}
-        minScale={0.5}
+        maxScale={5}
+        minScale={0.1}
         zoomAnimation={true}
         defaultPositionX={100}
         defaultPositionY={100}
@@ -114,14 +116,15 @@ const Surah = () => {
 
                 textAlign: "center",
                 display: "flex",
-                padding: "20px",
-                justifyContent: "start",
-                alignItems: "center",
+
+                justifyContent: "center",
+                alignItems: "end",
+                padding: "30px 30px 80px 30px",
                 flexDirection: "column",
               }}
               wrapperStyle={{
                 width: "100%",
-                height: "100%",
+                height: "88.6vh",
               }}
             >
               {

@@ -9,6 +9,7 @@ import DropDown from "./dropdown/DropDown";
 import DropDownItem from "./dropdown/DropDownItem";
 import translationlang from "@/constants/translation";
 const Navbar = () => {
+  const { alert } = useStore();
   const {
     fetchSurahImage,
     generated,
@@ -78,7 +79,7 @@ const Navbar = () => {
         }}
       >
         <button
-          className="bg-[black]
+          className={`${alert ? "bg-[#0000006b]" : "bg-[black]"}
         rounded-[10px]
         px-5
         py-2
@@ -91,12 +92,13 @@ const Navbar = () => {
         
         sm:rounded-[5px]
         
-         
-        "
+        
+        `}
           onClick={() => {
             removeScrollInBody();
             fetchSurahImage();
           }}
+          disabled={alert}
         >
           <BiSolidRightArrow
             className={`
