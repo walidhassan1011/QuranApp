@@ -19,6 +19,7 @@ const SurahPart = () => {
     translation,
     ayaNumber,
     setAyaNumber,
+    setAlert,
   } = useStore();
 
   return (
@@ -48,6 +49,7 @@ const SurahPart = () => {
           setSurahId(localsurahId);
           if (surah.toAya < ayaNumber.start || surah.toAya < ayaNumber.end) {
             setAyaNumber({ start: 1, end: 1 });
+            setAlert(false);
           }
         }}
         style={
