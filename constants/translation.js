@@ -34,6 +34,7 @@ const translationlang = {
     english: "الإنجليزية",
     arabic: "عربى",
     download: "تحميل",
+    colornoal: "لون",
     errorMessage: {
       startLessThanEnd: "يجب أن يكون رقم الآية الأولى أقل من رقم الآية الأخيرة",
       somethingWentWrong: "حدث خطأ ما",
