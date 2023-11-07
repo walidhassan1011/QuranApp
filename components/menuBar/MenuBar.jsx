@@ -9,6 +9,8 @@ import { AnimatePresence } from "framer-motion";
 import SurahWrap from "./surahWrap/SurahWrap";
 import TextWrap from "./textSizeWrap/TextWrap";
 import ColorWrap from "./colorWrap/ColorWrap";
+import translationlang from "@/constants/translation";
+const{translation} = useStore
 
 const MenuBar = () => {
   const { colors, setColors, translation } = useStore();
@@ -25,12 +27,14 @@ const MenuBar = () => {
     {
       id: 1,
       name: "Surah",
+      arabicName: translationlang.ar.surah,
       subName: "",
       icon: <BsBook className="text-black text-[1.4rem] leading-[1.9rem]" />,
     },
     {
       id: 2,
       name: "Text",
+      arabicName: translationlang.ar.textSize,
       subName: "Size",
       icon: (
         <RxLetterCaseCapitalize
@@ -44,6 +48,8 @@ const MenuBar = () => {
       id: 3,
       name: "Text",
       subName: "Color",
+      arabicName: translationlang.ar.colornoal,
+      arabicSubName: translationlang.ar.text,
       icon: (
         <div
           className={`w-[30px]
@@ -57,6 +63,8 @@ const MenuBar = () => {
       id: 4,
       name: "Background",
       subName: "",
+      arabicName: translationlang.ar.colornoal,
+      arabicSubName: translationlang.ar.background,
       icon: (
         <div
           className="w-[30px]
@@ -71,6 +79,8 @@ const MenuBar = () => {
       id: 5,
       name: "Assets",
       subName: "",
+      arabicName: translationlang.ar.colornoal,
+      arabicSubName: translationlang.ar.assets,
       icon: (
         <div
           className="w-[30px]
@@ -81,7 +91,7 @@ const MenuBar = () => {
       ),
     },
   ];
-
+  
   return (
     <>
       <>
@@ -268,10 +278,10 @@ const MenuBar = () => {
                 
                 "
                   >
-                    {item.name}
+                    {translation === "English" ?item.name: item.arabicName }
                   </span>
                   <span className="text-black text-[1rem] leading-[1rem]">
-                    {item.subName}
+                    {translation ===  "English"?item.subName: item.arabicSubName}
                   </span>
                 </div>
               </div>
