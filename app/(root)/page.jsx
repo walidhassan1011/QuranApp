@@ -1,18 +1,18 @@
-"use client";
-import Hero from "@/components/Hero";
-import MenuBar from "@/components/menuBar/MenuBar";
-import Navbar from "@/components/Navbar";
+import About from "@/components/landingPage/About";
+import Footer from "@/components/landingPage/Footer";
+import Frame from "@/components/landingPage/Frame";
+import Navbar from "@/components/landingPage/Navabar";
+import React from "react";
 
-import { useStore } from "@/context/Store";
-import "@/styles/fonts.css";
-export default function Home() {
-  const { translation } = useStore();
-
+const page = () => {
   return (
-    <div dir={translation === "Arabic" ? "rtl" : "ltr"}>
+    <div>
       <Navbar />
-      <Hero />
-      <MenuBar />
+      <Frame />
+      <About />
+      <Footer />
     </div>
   );
-}
+};
+
+export default page;
