@@ -6,15 +6,19 @@ import fathaImage from "../../assets/fatha.png";
 import { FiArrowUpRight } from "react-icons/fi";
 import { BiSolidRightArrow } from "react-icons/bi";
 import { useRouter } from "next/navigation";
+import generateAyat from "@/constants/generatefunc";
+import { useStore } from "@/context/Store";
+import { VersesInEnglish, versesInArabic } from "@/constants/ayatNumbers";
 const Frame = () => {
   const router = useRouter();
+  const { fetchSurahImage, surahName, setSurahName, surahImage } = useStore();
   return (
     <section
       className="
     flex flex-col
     py-10
     items-center
-   h-screen
+   
     justify-center
     text-white
     relative
@@ -37,9 +41,10 @@ const Frame = () => {
         "
       >
         <Image
-          src={fathaImage}
+          src={surahImage?.length > 0 ? surahImage : fathaImage}
           width={800}
           height={800}
+          alt="surah image"
           className="
             rounded-[10px]
             shadow-2xl
@@ -68,8 +73,8 @@ const Frame = () => {
           className="
           bg-[#a27a50]
             rounded-[10px]
-            shadow-2xl
-            shadow-black
+           
+            
             px-5
             w-[200px]
             
@@ -106,8 +111,7 @@ const Frame = () => {
           className="
             bg-[#a27a50]
             rounded-[10px]
-            shadow-2xl
-            shadow-black
+            
             
             px-5
             
@@ -120,6 +124,21 @@ const Frame = () => {
             w-[200px]
             
             "
+          onClick={() => {
+            const surah = generateAyat();
+            const engId = VersesInEnglish.find((item) => {
+              if (item.surahName === surah) {
+                return item.id;
+              }
+            });
+            const arabicName = versesInArabic.find((item) => {
+              if (item.id === engId.id) {
+                return item.surahName;
+              }
+            });
+            setSurahName(arabicName.surahName);
+            fetchSurahImage();
+          }}
         >
           <span
             className="

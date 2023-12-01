@@ -143,6 +143,7 @@ export const StoreProvider = ({ children }) => {
       if (id == undefined) {
         return;
       }
+      console.log(id);
       setGenerated(true);
       const res = await API.get("/generate", {
         params: {
